@@ -1,0 +1,228 @@
+.layout-minimalist {
+  --bg: #FAFAFA;
+  --surface: #FFFFFF;
+  --text: #000000;
+  --muted: #666666;
+  --border: #EEEEEE;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+}
+
+.layout-minimalist h1,
+.layout-minimalist h2 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.layout-minimalist .m-header {
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.layout-minimalist .m-header-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 48px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+.layout-minimalist .m-header h1 {
+  font-size: 32px;
+  margin-bottom: 8px;
+}
+
+.layout-minimalist .m-header p {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 500px;
+}
+
+.layout-minimalist .theme-switcher {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.layout-minimalist .theme-btn {
+  font-size: 12px;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+}
+
+.layout-minimalist .theme-btn.active {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.layout-minimalist .m-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.layout-minimalist .m-section {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.layout-minimalist .m-section:last-child {
+  border-bottom: none;
+}
+
+.layout-minimalist .m-section h2 {
+  font-size: 18px;
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+}
+
+.layout-minimalist .m-stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.layout-minimalist .m-stat {
+  text-align: center;
+}
+
+.layout-minimalist .m-stat-value {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.layout-minimalist .m-stat-label {
+  font-size: 12px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+.layout-minimalist .m-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.layout-minimalist .m-table tbody tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.layout-minimalist .m-table tbody tr:hover {
+  background: var(--surface);
+}
+
+.layout-minimalist .m-table td {
+  padding: 12px 0;
+  font-size: 13px;
+}
+
+.layout-minimalist .m-table .m-idx {
+  color: var(--muted);
+  width: 40px;
+}
+
+.layout-minimalist .m-table .m-title {
+  font-weight: 600;
+}
+
+.layout-minimalist .m-table .m-stack {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.layout-minimalist .m-table .m-date {
+  color: var(--muted);
+  width: 80px;
+  font-size: 12px;
+}
+
+.layout-minimalist .m-table .m-org {
+  color: var(--muted);
+}
+
+.layout-minimalist .m-table .m-cat {
+  font-weight: 600;
+  padding-top: 16px;
+}
+
+.layout-minimalist .m-table .m-items {
+  color: var(--muted);
+}
+
+.layout-minimalist .m-table .m-links {
+  width: 30px;
+  text-align: center;
+}
+
+.layout-minimalist .m-table a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.layout-minimalist .m-table a:hover {
+  text-decoration: underline;
+}
+
+.layout-minimalist .m-about-text {
+  font-size: 15px;
+  color: var(--muted);
+  max-width: 600px;
+  line-height: 1.8;
+}
+
+.layout-minimalist .m-contact a {
+  color: var(--text);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+}
+
+.layout-minimalist .m-contact a:hover {
+  border-bottom-color: var(--text);
+}
+
+.layout-minimalist .m-contact p {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 640px) {
+  .layout-minimalist .m-header-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .layout-minimalist .m-stats-row {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-minimalist .m-table td {
+    font-size: 12px;
+    padding: 8px 0;
+  }
+
+  .layout-minimalist .m-header {
+    padding: 24px 12px;
+  }
+
+  .layout-minimalist .m-container {
+    padding: 0 12px;
+  }
+
+  .layout-minimalist .m-section {
+    padding: 32px 0;
+  }
+}

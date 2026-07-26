@@ -1,0 +1,367 @@
+.layout-cyberpunk {
+  --bg: #06010F;
+  --panel: #0F0620;
+  --panel2: #170A30;
+  --text: #E9E4FF;
+  --muted: #9C8FC9;
+  --accent: #FF2ED1;
+  --accent2: #00F0FF;
+  --border: #3A1D63;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'JetBrains Mono', monospace;
+  position: relative;
+  min-height: 100vh;
+}
+
+.layout-cyberpunk::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 5;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.035) 0px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+.layout-cyberpunk .cy-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 250px;
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  padding: 26px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.layout-cyberpunk .cy-ascii {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--accent);
+  text-shadow: 0 0 8px var(--accent);
+  letter-spacing: 0.05em;
+}
+
+.layout-cyberpunk .cy-status {
+  font-size: 10.5px;
+  color: var(--accent2);
+  margin-top: 6px;
+}
+
+.layout-cyberpunk .cy-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.layout-cyberpunk .cy-nav a {
+  font-size: 12px;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.layout-cyberpunk .cy-nav a:hover {
+  color: var(--accent2);
+}
+
+.layout-cyberpunk .cy-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.layout-cyberpunk .cy-switcher .lbl {
+  font-size: 10px;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 2px;
+}
+
+.layout-cyberpunk .theme-switcher {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.layout-cyberpunk .theme-btn {
+  font-family: 'JetBrains Mono', monospace;
+  text-align: left;
+  font-size: 11.5px;
+  padding: 7px 9px;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.layout-cyberpunk .theme-btn.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 0 10px rgba(255, 46, 209, 0.4);
+}
+
+.layout-cyberpunk .cy-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+}
+
+.layout-cyberpunk .cy-stat {
+  border: 1px solid var(--border);
+  padding: 8px 10px;
+}
+
+.layout-cyberpunk .cy-stat .num {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--accent2);
+}
+
+.layout-cyberpunk .cy-stat .label {
+  font-size: 9.5px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.layout-cyberpunk .cy-main {
+  margin-left: 250px;
+  padding: 36px 40px 60px;
+  max-width: 900px;
+}
+
+.layout-cyberpunk .cy-window {
+  border: 1px solid var(--border);
+  background: var(--panel2);
+  margin-bottom: 24px;
+}
+
+.layout-cyberpunk .cy-titlebar {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.layout-cyberpunk .cy-titlebar span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  display: inline-block;
+}
+
+.layout-cyberpunk .cy-titlebar span:nth-child(1) {
+  background: #FF5F56;
+}
+
+.layout-cyberpunk .cy-titlebar span:nth-child(2) {
+  background: #FFBD2E;
+}
+
+.layout-cyberpunk .cy-titlebar span:nth-child(3) {
+  background: #27C93F;
+}
+
+.layout-cyberpunk .cy-window-body {
+  padding: 22px 24px;
+}
+
+.layout-cyberpunk .cy-prompt {
+  font-size: 12px;
+  color: var(--accent2);
+  margin-bottom: 10px;
+}
+
+.layout-cyberpunk .cy-window-body h1 {
+  font-size: clamp(26px, 4vw, 38px);
+  color: var(--text);
+  text-shadow: 0 0 2px var(--accent2), 2px 0 var(--accent), -2px 0 var(--accent2);
+  margin-bottom: 14px;
+  line-height: 1.15;
+}
+
+.layout-cyberpunk .cy-role {
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+.layout-cyberpunk .cy-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+
+.layout-cyberpunk .cy-badge {
+  font-size: 11px;
+  border: 1px solid var(--accent2);
+  color: var(--accent2);
+  padding: 5px 10px;
+}
+
+.layout-cyberpunk .cy-cta {
+  display: flex;
+  gap: 12px;
+}
+
+.layout-cyberpunk .cy-btn {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 11px 18px;
+  background: var(--accent);
+  color: #06010F;
+  box-shadow: 0 0 16px rgba(255, 46, 209, 0.5);
+  border: none;
+  cursor: pointer;
+}
+
+.layout-cyberpunk .cy-btn.ghost {
+  background: transparent;
+  color: var(--accent2);
+  border: 1px solid var(--accent2);
+  box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.layout-cyberpunk .cy-window-body p.plain {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.85;
+  margin-bottom: 12px;
+}
+
+.layout-cyberpunk .cy-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.layout-cyberpunk .cy-table th {
+  text-align: left;
+  font-size: 10.5px;
+  color: var(--accent2);
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.layout-cyberpunk .cy-table td {
+  font-size: 12px;
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--muted);
+}
+
+.layout-cyberpunk .cy-table td.name {
+  color: var(--text);
+  font-weight: 700;
+}
+
+.layout-cyberpunk .cy-table a {
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.layout-cyberpunk .cy-log {
+  margin-bottom: 18px;
+}
+
+.layout-cyberpunk .cy-log .ts {
+  color: var(--accent2);
+  font-size: 11px;
+}
+
+.layout-cyberpunk .cy-log h3 {
+  font-size: 14.5px;
+  color: var(--text);
+  margin: 4px 0 2px;
+}
+
+.layout-cyberpunk .cy-log .org {
+  font-size: 11.5px;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.layout-cyberpunk .cy-log li {
+  font-size: 12px;
+  color: var(--muted);
+  padding-left: 14px;
+  position: relative;
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+.layout-cyberpunk .cy-log li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--accent2);
+}
+
+.layout-cyberpunk .cy-skillgroup {
+  margin-bottom: 16px;
+}
+
+.layout-cyberpunk .cy-skillgroup .lbl {
+  font-size: 11px;
+  color: var(--accent2);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.layout-cyberpunk .cy-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.layout-cyberpunk .cy-chip {
+  font-size: 11px;
+  border: 1px solid var(--border);
+  padding: 5px 10px;
+  color: var(--text);
+}
+
+.layout-cyberpunk .cy-footer .cy-window-body a {
+  color: var(--accent);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.layout-cyberpunk .cy-footer .cy-window-body div {
+  font-size: 12.5px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+@media (max-width: 820px) {
+  .layout-cyberpunk .cy-sidebar {
+    position: static;
+    width: auto;
+  }
+
+  .layout-cyberpunk .cy-main {
+    margin-left: 0;
+    padding: 24px;
+  }
+}
