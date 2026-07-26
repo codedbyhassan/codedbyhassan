@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hassan Agyemang Boakye — Systems Administrator & Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700;800&family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&family=Archivo+Black&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{min-height:100vh; background:#fff;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%; display:block;}
+  ul{list-style:none;}
+  table{border-collapse:collapse; width:100%;}
+
+  /* ====================================================================
+     LAYOUT 1 — CLEAN / PROFESSIONAL  (top navbar, corporate two-col hero)
+     ==================================================================== */
+  .layout-clean{
+    --bg:#FFFFFF; --surface:#F6F8FB; --text:#14213D; --muted:#5B6B82;
+    --accent:#2E5AAC; --accent2:#1B8A6B; --border:#E1E7EF;
+    background:var(--bg); color:var(--text);
+    font-family:'Inter',sans-serif;
+  }
+  .layout-clean h1,.layout-clean h2,.layout-clean .c-logo{ font-family:'Space Grotesk',sans-serif; }
+  .layout-clean .c-nav{ position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); }
+  .layout-clean .c-nav-inner{ max-width:1100px; margin:0 auto; padding:16px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .layout-clean .c-logo{ font-weight:700; font-size:18px; letter-spacing:-0.02em; }
+  .layout-clean .c-links{ display:flex; gap:26px; font-size:14px; font-weight:500; color:var(--muted); }
+  .layout-clean .c-links a:hover{ color:var(--accent); }
+  .layout-clean .c-switcher{ display:flex; gap:4px; background:var(--surface); border:1px solid var(--border); border-radius:20px; padding:4px; }
+  .layout-clean .c-switcher button{ font-family:'Inter',sans-serif; font-size:11px; font-weight:600; padding:7px 12px; border:none; background:transparent; color:var(--muted); border-radius:16px; cursor:pointer; }
+  .layout-clean .c-switcher button.active{ background:var(--accent); color:#fff; }
+
+  .layout-clean .c-wrap{ max-width:1100px; margin:0 auto; padding:0 28px; }
+  .layout-clean .c-hero{ padding:80px 0 60px; }
+  .layout-clean .c-hero-grid{ display:grid; grid-template-columns:1.5fr 1fr; gap:50px; align-items:start; }
+  .layout-clean .c-eyebrow{ font-size:13px; font-weight:600; color:var(--accent); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:16px; display:block; }
+  .layout-clean .c-hero h1{ font-size:clamp(36px,5vw,56px); font-weight:700; line-height:1.08; margin-bottom:20px; }
+  .layout-clean .c-role{ font-size:17px; line-height:1.7; color:var(--muted); margin-bottom:26px; max-width:560px; }
+  .layout-clean .c-badges{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:30px; }
+  .layout-clean .c-badge{ font-size:12.5px; font-weight:500; padding:6px 13px; border-radius:20px; background:var(--surface); border:1px solid var(--border); color:var(--muted); }
+  .layout-clean .c-cta{ display:flex; gap:12px; }
+  .layout-clean .c-btn{ font-size:14px; font-weight:600; padding:12px 22px; border-radius:10px; background:var(--text); color:#fff; }
+  .layout-clean .c-btn.ghost{ background:transparent; color:var(--text); border:1px solid var(--border); }
+  .layout-clean .c-hero-card{ background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:26px; }
+  .layout-clean .c-card-row{ display:flex; justify-content:space-between; padding:12px 0; border-bottom:1px solid var(--border); font-size:14px; }
+  .layout-clean .c-card-row:last-child{ border-bottom:none; }
+  .layout-clean .c-card-row span{ color:var(--muted); }
+  .layout-clean .c-card-row strong{ font-weight:600; }
+
+  .layout-clean section{ padding:64px 0; border-top:1px solid var(--border); }
+  .layout-clean section > .c-wrap > h2{ font-size:28px; font-weight:700; margin-bottom:36px; }
+  .layout-clean .c-about-cols{ display:grid; grid-template-columns:1.4fr 1fr; gap:40px; }
+  .layout-clean .c-about-text p{ font-size:15.5px; line-height:1.8; color:var(--muted); margin-bottom:14px; }
+  .layout-clean .c-stats{ display:flex; flex-direction:column; gap:12px; }
+  .layout-clean .c-stat{ background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px 20px; }
+  .layout-clean .c-stat .num{ font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700; color:var(--accent); }
+  .layout-clean .c-stat .label{ font-size:12px; color:var(--muted); text-transform:uppercase; letter-spacing:0.03em; }
+
+  .layout-clean .c-project-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .layout-clean .c-project{ border:1px solid var(--border); border-radius:14px; padding:22px; display:flex; flex-direction:column; gap:12px; transition:box-shadow 200ms, transform 200ms; }
+  .layout-clean .c-project:hover{ box-shadow:0 10px 26px rgba(20,33,61,0.08); transform:translateY(-3px); }
+  .layout-clean .c-project h3{ font-size:16.5px; font-weight:700; }
+  .layout-clean .c-project p{ font-size:13.5px; color:var(--muted); line-height:1.6; flex-grow:1; }
+  .layout-clean .c-stack{ font-size:11.5px; color:var(--accent2); font-weight:600; }
+  .layout-clean .c-plinks{ display:flex; gap:14px; font-size:12.5px; font-weight:600; }
+  .layout-clean .c-plinks a{ color:var(--accent); text-decoration:underline; text-underline-offset:3px; }
+
+  .layout-clean .c-timeline{ position:relative; padding-left:28px; }
+  .layout-clean .c-timeline::before{ content:""; position:absolute; left:5px; top:6px; bottom:6px; width:2px; background:var(--border); }
+  .layout-clean .c-titem{ position:relative; padding-bottom:34px; }
+  .layout-clean .c-titem::before{ content:""; position:absolute; left:-28px; top:4px; width:12px; height:12px; border-radius:50%; background:var(--accent); border:3px solid var(--bg); box-shadow:0 0 0 2px var(--accent); }
+  .layout-clean .c-titem .date{ font-size:12px; font-weight:600; color:var(--accent); text-transform:uppercase; margin-bottom:4px; }
+  .layout-clean .c-titem h3{ font-size:17px; font-weight:700; }
+  .layout-clean .c-titem .org{ font-size:13px; color:var(--muted); margin-bottom:8px; display:block; }
+  .layout-clean .c-titem li{ font-size:13.5px; color:var(--muted); line-height:1.65; padding-left:14px; position:relative; margin-bottom:4px;}
+  .layout-clean .c-titem li::before{ content:"–"; position:absolute; left:0; }
+
+  .layout-clean .c-skill-rows{ display:flex; flex-direction:column; gap:18px; }
+  .layout-clean .c-skill-row{ display:flex; gap:20px; align-items:baseline; flex-wrap:wrap; padding:14px 0; border-bottom:1px solid var(--border); }
+  .layout-clean .c-skill-row .cat{ font-size:13px; font-weight:700; color:var(--text); width:190px; flex-shrink:0; }
+  .layout-clean .c-skill-row .items{ font-size:14px; color:var(--muted); }
+
+  .layout-clean footer{ padding:60px 0; text-align:center; border-top:1px solid var(--border); }
+  .layout-clean footer h2{ font-size:30px; font-weight:700; margin-bottom:20px; }
+  .layout-clean .c-fbtn{ display:inline-block; font-size:14px; font-weight:600; padding:13px 26px; border-radius:10px; background:var(--text); color:#fff; margin-bottom:24px; }
+  .layout-clean .c-flinks{ display:flex; gap:20px; justify-content:center; font-size:13.5px; color:var(--muted); }
+  .layout-clean .c-flinks a:hover{ color:var(--accent); }
+
+  @media(max-width:820px){
+    .layout-clean .c-hero-grid, .layout-clean .c-about-cols{ grid-template-columns:1fr; }
+    .layout-clean .c-project-grid{ grid-template-columns:1fr; }
+    .layout-clean .c-links{ display:none; }
+  }
+
+  /* ====================================================================
+     LAYOUT 2 — CYBERPUNK  (fixed left HUD sidebar, terminal windows)
+     ==================================================================== */
+  .layout-cyberpunk{
+    --bg:#06010F; --panel:#0F0620; --panel2:#170A30; --text:#E9E4FF; --muted:#9C8FC9;
+    --accent:#FF2ED1; --accent2:#00F0FF; --border:#3A1D63;
+    background:var(--bg); color:var(--text); font-family:'JetBrains Mono',monospace;
+    position:relative; min-height:100vh;
+  }
+  .layout-cyberpunk::before{
+    content:""; position:fixed; inset:0; pointer-events:none; z-index:5;
+    background:repeating-linear-gradient(0deg, rgba(255,255,255,0.035) 0px, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 3px);
+  }
+  .layout-cyberpunk .cy-sidebar{
+    position:fixed; top:0; left:0; bottom:0; width:250px; background:var(--panel);
+    border-right:1px solid var(--border); padding:26px 20px; display:flex; flex-direction:column; gap:26px; overflow-y:auto; z-index:10;
+  }
+  .layout-cyberpunk .cy-ascii{ font-size:13px; font-weight:800; color:var(--accent); text-shadow:0 0 8px var(--accent); letter-spacing:0.05em; }
+  .layout-cyberpunk .cy-status{ font-size:10.5px; color:var(--accent2); margin-top:6px; }
+  .layout-cyberpunk .cy-nav{ display:flex; flex-direction:column; gap:10px; }
+  .layout-cyberpunk .cy-nav a{ font-size:12px; color:var(--muted); }
+  .layout-cyberpunk .cy-nav a:hover{ color:var(--accent2); }
+  .layout-cyberpunk .cy-switcher{ display:flex; flex-direction:column; gap:6px; }
+  .layout-cyberpunk .cy-switcher .lbl{ font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:2px; }
+  .layout-cyberpunk .cy-switcher button{ font-family:'JetBrains Mono',monospace; text-align:left; font-size:11.5px; padding:7px 9px; background:transparent; border:1px solid var(--border); color:var(--muted); cursor:pointer; }
+  .layout-cyberpunk .cy-switcher button.active{ border-color:var(--accent); color:var(--accent); box-shadow:0 0 10px rgba(255,46,209,0.4); }
+  .layout-cyberpunk .cy-stats{ display:flex; flex-direction:column; gap:10px; margin-top:auto; }
+  .layout-cyberpunk .cy-stat{ border:1px solid var(--border); padding:8px 10px; }
+  .layout-cyberpunk .cy-stat .num{ font-size:18px; font-weight:800; color:var(--accent2); }
+  .layout-cyberpunk .cy-stat .label{ font-size:9.5px; color:var(--muted); text-transform:uppercase; }
+
+  .layout-cyberpunk .cy-main{ margin-left:250px; padding:36px 40px 60px; max-width:900px; }
+  .layout-cyberpunk .cy-window{ border:1px solid var(--border); background:var(--panel2); margin-bottom:24px; }
+  .layout-cyberpunk .cy-titlebar{ display:flex; gap:6px; align-items:center; padding:9px 14px; border-bottom:1px solid var(--border); font-size:11px; color:var(--muted); }
+  .layout-cyberpunk .cy-titlebar span{ width:8px; height:8px; border-radius:50%; background:var(--border); display:inline-block; }
+  .layout-cyberpunk .cy-titlebar span:nth-child(1){ background:#FF5F56; }
+  .layout-cyberpunk .cy-titlebar span:nth-child(2){ background:#FFBD2E; }
+  .layout-cyberpunk .cy-titlebar span:nth-child(3){ background:#27C93F; }
+  .layout-cyberpunk .cy-window-body{ padding:22px 24px; }
+  .layout-cyberpunk .cy-prompt{ font-size:12px; color:var(--accent2); margin-bottom:10px; }
+  .layout-cyberpunk .cy-window-body h1{ font-size:clamp(26px,4vw,38px); color:var(--text); text-shadow:0 0 2px var(--accent2),2px 0 var(--accent),-2px 0 var(--accent2); margin-bottom:14px; line-height:1.15; }
+  .layout-cyberpunk .cy-role{ font-size:13.5px; color:var(--muted); line-height:1.75; margin-bottom:20px; }
+  .layout-cyberpunk .cy-badges{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:22px; }
+  .layout-cyberpunk .cy-badge{ font-size:11px; border:1px solid var(--accent2); color:var(--accent2); padding:5px 10px; }
+  .layout-cyberpunk .cy-cta{ display:flex; gap:12px; }
+  .layout-cyberpunk .cy-btn{ font-size:12px; font-weight:700; padding:11px 18px; background:var(--accent); color:#06010F; box-shadow:0 0 16px rgba(255,46,209,0.5); }
+  .layout-cyberpunk .cy-btn.ghost{ background:transparent; color:var(--accent2); border:1px solid var(--accent2); box-shadow:0 0 10px rgba(0,240,255,0.3); }
+
+  .layout-cyberpunk .cy-window-body p.plain{ font-size:13px; color:var(--muted); line-height:1.85; margin-bottom:12px; }
+  .layout-cyberpunk .cy-table th{ text-align:left; font-size:10.5px; color:var(--accent2); text-transform:uppercase; padding:6px 10px; border-bottom:1px solid var(--border); }
+  .layout-cyberpunk .cy-table td{ font-size:12px; padding:10px; border-bottom:1px solid var(--border); vertical-align:top; color:var(--muted); }
+  .layout-cyberpunk .cy-table td.name{ color:var(--text); font-weight:700; }
+  .layout-cyberpunk .cy-table a{ color:var(--accent); text-decoration:underline; }
+
+  .layout-cyberpunk .cy-log{ margin-bottom:18px; }
+  .layout-cyberpunk .cy-log .ts{ color:var(--accent2); font-size:11px; }
+  .layout-cyberpunk .cy-log h3{ font-size:14.5px; color:var(--text); margin:4px 0 2px; }
+  .layout-cyberpunk .cy-log .org{ font-size:11.5px; color:var(--accent); display:block; margin-bottom:8px; }
+  .layout-cyberpunk .cy-log li{ font-size:12px; color:var(--muted); padding-left:14px; position:relative; margin-bottom:4px; line-height:1.6; }
+  .layout-cyberpunk .cy-log li::before{ content:">"; position:absolute; left:0; color:var(--accent2); }
+
+  .layout-cyberpunk .cy-skillgroup{ margin-bottom:16px; }
+  .layout-cyberpunk .cy-skillgroup .lbl{ font-size:11px; color:var(--accent2); text-transform:uppercase; margin-bottom:8px; }
+  .layout-cyberpunk .cy-chip-row{ display:flex; flex-wrap:wrap; gap:8px; }
+  .layout-cyberpunk .cy-chip{ font-size:11px; border:1px solid var(--border); padding:5px 10px; color:var(--text); }
+
+  .layout-cyberpunk .cy-footer .cy-window-body a{ color:var(--accent); text-decoration:underline; }
+  .layout-cyberpunk .cy-footer .cy-window-body div{ font-size:12.5px; color:var(--muted); margin-bottom:8px; }
+
+  @media(max-width:820px){
+    .layout-cyberpunk .cy-sidebar{ position:static; width:auto; }
+    .layout-cyberpunk .cy-main{ margin-left:0; padding:24px; }
+  }
+
+  /* ====================================================================
+     LAYOUT 3 — BRUTALIST  (stacked poster/zine, no persistent nav)
+     ==================================================================== */
+  .layout-brutalist{
+    --bg:#F2F0EA; --surface:#FFFFFF; --yellow:#FFE600; --text:#0A0A0A; --muted:#3A3A3A;
+    --accent:#FF3300; --border:#0A0A0A;
+    background:var(--bg); color:var(--text); font-family:'IBM Plex Mono',monospace;
+  }
+  .layout-brutalist .br-topbar{ display:flex; justify-content:space-between; align-items:center; padding:16px 24px; border-bottom:3px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:20; }
+  .layout-brutalist .br-issue{ font-weight:700; font-size:13px; }
+  .layout-brutalist .br-switcher{ display:flex; gap:8px; }
+  .layout-brutalist .br-switcher button{ font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:700; padding:8px 12px; border:2px solid var(--border); background:var(--surface); cursor:pointer; box-shadow:3px 3px 0 var(--border); }
+  .layout-brutalist .br-switcher button.active{ background:var(--yellow); }
+  .layout-brutalist .br-switcher button:hover{ transform:translate(-1px,-1px); box-shadow:4px 4px 0 var(--border); }
+
+  .layout-brutalist .br-wrap{ max-width:1000px; margin:0 auto; padding:0 24px; }
+  .layout-brutalist .br-hero{ padding:70px 24px 50px; border-bottom:3px solid var(--border); }
+  .layout-brutalist .br-giant{ font-family:'Archivo Black',sans-serif; font-size:clamp(42px,9vw,100px); line-height:0.92; text-transform:uppercase; max-width:1000px; margin:0 auto 26px; }
+  .layout-brutalist .br-hero-meta{ max-width:1000px; margin:0 auto 20px; display:flex; gap:10px; flex-wrap:wrap; }
+  .layout-brutalist .br-stamp{ background:var(--yellow); border:2px solid var(--border); padding:5px 12px; font-size:11.5px; font-weight:700; text-transform:uppercase; transform:rotate(-1.5deg); display:inline-block; }
+  .layout-brutalist .br-role{ max-width:640px; margin:0 auto 22px; font-size:16px; line-height:1.6; }
+  .layout-brutalist .br-badges{ max-width:1000px; margin:0 auto 26px; display:flex; flex-wrap:wrap; gap:8px; }
+  .layout-brutalist .br-badge{ border:2px solid var(--border); padding:5px 11px; font-size:11.5px; background:var(--surface); box-shadow:3px 3px 0 var(--border); }
+  .layout-brutalist .br-cta{ max-width:1000px; margin:0 auto; display:flex; gap:14px; }
+  .layout-brutalist .br-btn{ font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:13px; padding:13px 24px; border:3px solid var(--border); background:var(--text); color:var(--bg); box-shadow:5px 5px 0 var(--accent); }
+  .layout-brutalist .br-btn.ghost{ background:var(--surface); color:var(--text); }
+  .layout-brutalist .br-btn:hover{ transform:translate(-2px,-2px); box-shadow:7px 7px 0 var(--accent); }
+
+  .layout-brutalist .br-marker{ display:inline-block; font-family:'Archivo Black',sans-serif; font-size:13px; text-transform:uppercase; background:var(--text); color:var(--bg); padding:6px 14px; margin-bottom:26px; }
+
+  .layout-brutalist .br-about{ padding:60px 0; border-bottom:3px solid var(--border); }
+  .layout-brutalist .br-row{ display:grid; grid-template-columns:0.9fr 1.6fr; gap:30px; }
+  .layout-brutalist .br-about-text p{ font-size:15px; line-height:1.75; margin-bottom:14px; }
+  .layout-brutalist .br-stat-strip{ display:flex; gap:0; margin-top:36px; border:3px solid var(--border); }
+  .layout-brutalist .br-stat{ flex:1; padding:20px; border-right:3px solid var(--border); }
+  .layout-brutalist .br-stat:last-child{ border-right:none; }
+  .layout-brutalist .br-stat .num{ font-family:'Archivo Black',sans-serif; font-size:36px; color:var(--accent); }
+  .layout-brutalist .br-stat .label{ font-size:11px; text-transform:uppercase; margin-top:4px; }
+
+  .layout-brutalist .br-projects{ padding:60px 0; border-bottom:3px solid var(--border); }
+  .layout-brutalist .br-prow{ border:3px solid var(--border); background:var(--surface); margin-bottom:22px; padding:26px; display:grid; grid-template-columns:90px 1fr; gap:22px; }
+  .layout-brutalist .br-prow:nth-child(even){ background:var(--yellow); }
+  .layout-brutalist .br-prow .idx{ font-family:'Archivo Black',sans-serif; font-size:44px; line-height:1; }
+  .layout-brutalist .br-prow h3{ font-size:20px; text-transform:uppercase; margin-bottom:8px; }
+  .layout-brutalist .br-prow p{ font-size:13.5px; line-height:1.65; margin-bottom:10px; }
+  .layout-brutalist .br-prow .stack{ font-size:11px; font-weight:700; margin-bottom:10px; }
+  .layout-brutalist .br-prow .links{ display:flex; gap:14px; font-size:12px; font-weight:700; }
+  .layout-brutalist .br-prow .links a{ text-decoration:underline; }
+
+  .layout-brutalist .br-exp{ padding:60px 0; border-bottom:3px solid var(--border); }
+  .layout-brutalist .br-ecard{ border:3px solid var(--border); background:var(--surface); padding:22px; margin-bottom:20px; box-shadow:6px 6px 0 var(--border); }
+  .layout-brutalist .br-ecard .date{ font-size:11px; font-weight:700; background:var(--text); color:var(--bg); display:inline-block; padding:3px 9px; margin-bottom:10px; }
+  .layout-brutalist .br-ecard h3{ font-size:18px; text-transform:uppercase; }
+  .layout-brutalist .br-ecard .org{ font-size:12.5px; color:var(--accent); font-weight:700; display:block; margin-bottom:10px; }
+  .layout-brutalist .br-ecard li{ font-size:13px; line-height:1.65; padding-left:16px; position:relative; margin-bottom:5px; }
+  .layout-brutalist .br-ecard li::before{ content:"■"; position:absolute; left:0; font-size:8px; top:5px; }
+
+  .layout-brutalist .br-skills{ padding:60px 0; border-bottom:3px solid var(--border); }
+  .layout-brutalist .br-skill-cloud{ display:flex; flex-wrap:wrap; gap:14px; align-items:center; }
+  .layout-brutalist .br-word{ font-family:'Archivo Black',sans-serif; text-transform:uppercase; border:2px solid var(--border); padding:6px 14px; background:var(--surface); }
+  .layout-brutalist .br-word.lg{ font-size:22px; background:var(--yellow); }
+  .layout-brutalist .br-word.md{ font-size:16px; }
+  .layout-brutalist .br-word.sm{ font-size:13px; color:var(--muted); }
+
+  .layout-brutalist footer{ padding:70px 24px; }
+  .layout-brutalist footer h2{ font-family:'Archivo Black',sans-serif; font-size:clamp(28px,5vw,50px); text-transform:uppercase; margin-bottom:24px; max-width:900px; margin-left:auto; margin-right:auto; text-align:center;}
+  .layout-brutalist .br-fbtn{ display:block; width:fit-content; margin:0 auto 26px; font-family:'IBM Plex Mono',monospace; font-weight:700; font-size:14px; padding:14px 28px; border:3px solid var(--border); background:var(--accent); color:#fff; box-shadow:5px 5px 0 var(--border); }
+  .layout-brutalist .br-flinks{ display:flex; gap:20px; justify-content:center; font-size:13px; font-weight:700; flex-wrap:wrap; }
+  .layout-brutalist .br-flinks a{ text-decoration:underline; }
+
+  @media(max-width:820px){
+    .layout-brutalist .br-row{ grid-template-columns:1fr; }
+    .layout-brutalist .br-stat-strip{ flex-direction:column; }
+    .layout-brutalist .br-stat{ border-right:none; border-bottom:3px solid var(--border); }
+    .layout-brutalist .br-prow{ grid-template-columns:1fr; }
+  }
+
+  /* ====================================================================
+     LAYOUT 4 — MINIMALIST / SWISS  (sticky left column + strict grid/tables)
+     ==================================================================== */
+  .layout-minimalist{
+    --bg:#FFFFFF; --text:#111111; --muted:#767676; --accent:#C1121F; --border:#DADADA;
+    background:var(--bg); color:var(--text); font-family:'Inter',sans-serif;
+    display:grid; grid-template-columns:260px 1fr; min-height:100vh;
+  }
+  .layout-minimalist .mn-sidebar{
+    position:sticky; top:0; height:100vh; padding:40px 30px; border-right:1px solid var(--border);
+    display:flex; flex-direction:column; gap:34px;
+  }
+  .layout-minimalist .mn-name{ font-size:19px; font-weight:600; letter-spacing:-0.01em; line-height:1.3; }
+  .layout-minimalist .mn-role-small{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); margin-top:8px; line-height:1.5; }
+  .layout-minimalist .mn-nav{ display:flex; flex-direction:column; gap:14px; }
+  .layout-minimalist .mn-nav a{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); }
+  .layout-minimalist .mn-nav a:hover{ color:var(--accent); }
+  .layout-minimalist .mn-switcher{ display:flex; flex-direction:column; gap:0; border-top:1px solid var(--border); border-bottom:1px solid var(--border); }
+  .layout-minimalist .mn-switcher button{ font-family:'JetBrains Mono',monospace; font-size:11px; text-align:left; padding:10px 0; background:transparent; border:none; border-bottom:1px solid var(--border); color:var(--muted); cursor:pointer; }
+  .layout-minimalist .mn-switcher button:last-child{ border-bottom:none; }
+  .layout-minimalist .mn-switcher button.active{ color:var(--accent); text-decoration:underline; text-underline-offset:3px; }
+  .layout-minimalist .mn-contact-mini{ margin-top:auto; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); line-height:1.9; }
+  .layout-minimalist .mn-contact-mini a{ color:var(--text); }
+
+  .layout-minimalist .mn-main{ padding:0 50px 80px; }
+  .layout-minimalist .mn-hero{ padding:64px 0 56px; border-bottom:1px solid var(--border); }
+  .layout-minimalist .mn-hero h1{ font-size:clamp(26px,3.6vw,42px); font-weight:600; line-height:1.35; letter-spacing:-0.01em; max-width:820px; }
+  .layout-minimalist .mn-hero h1 .hl{ color:var(--accent); }
+
+  .layout-minimalist .mn-section{ padding:56px 0; border-bottom:1px solid var(--border); }
+  .layout-minimalist .mn-label{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:24px; }
+  .layout-minimalist .mn-grid-2{ display:grid; grid-template-columns:200px 1fr; gap:30px; margin-bottom:30px; }
+  .layout-minimalist .mn-grid-2 p{ font-size:15px; line-height:1.8; color:var(--muted); margin-bottom:12px; }
+  .layout-minimalist .mn-stat-table{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--border); }
+  .layout-minimalist .mn-stat-table div{ padding:16px 0; border-right:1px solid var(--border); }
+  .layout-minimalist .mn-stat-table div:last-child{ border-right:none; }
+  .layout-minimalist .mn-stat-table .num{ font-size:24px; font-weight:600; }
+  .layout-minimalist .mn-stat-table .label{ font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--muted); margin-top:4px; }
+
+  .layout-minimalist table.mn-table th{ text-align:left; font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; color:var(--muted); padding:0 14px 12px 0; border-bottom:1px solid var(--border); }
+  .layout-minimalist table.mn-table td{ font-size:13.5px; padding:16px 14px 16px 0; border-bottom:1px solid var(--border); vertical-align:top; color:var(--text); }
+  .layout-minimalist table.mn-table td.muted{ color:var(--muted); font-size:13px; }
+  .layout-minimalist table.mn-table a{ color:var(--accent); text-decoration:underline; text-underline-offset:3px; }
+  .layout-minimalist table.mn-table .idx{ font-family:'JetBrains Mono',monospace; color:var(--muted); }
+  .layout-minimalist table.mn-table .stack{ font-family:'JetBrains Mono',monospace; font-size:11.5px; }
+  .layout-minimalist .mn-exp-row{ padding:22px 0; border-bottom:1px solid var(--border); display:grid; grid-template-columns:110px 1fr; gap:20px; }
+  .layout-minimalist .mn-exp-row:last-child{ border-bottom:none; }
+  .layout-minimalist .mn-exp-row .yr{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); }
+  .layout-minimalist .mn-exp-row h3{ font-size:15.5px; font-weight:600; }
+  .layout-minimalist .mn-exp-row .org{ font-size:12.5px; color:var(--muted); margin-bottom:8px; display:block; }
+  .layout-minimalist .mn-exp-row li{ font-size:13px; color:var(--muted); line-height:1.7; padding-left:14px; position:relative; }
+  .layout-minimalist .mn-exp-row li::before{ content:"–"; position:absolute; left:0; }
+
+  .layout-minimalist .mn-skills-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:26px; }
+  .layout-minimalist .mn-skill-cat .lbl{ font-family:'JetBrains Mono',monospace; font-size:10.5px; text-transform:uppercase; color:var(--accent); margin-bottom:10px; }
+  .layout-minimalist .mn-skill-cat li{ font-size:13px; padding:4px 0; color:var(--text); }
+
+  .layout-minimalist .mn-footer{ border-bottom:none; }
+  .layout-minimalist .mn-footer .big{ font-size:22px; font-weight:600; margin-bottom:20px; }
+  .layout-minimalist .mn-footer a.email{ font-size:15px; text-decoration:underline; text-underline-offset:4px; color:var(--accent); }
+  .layout-minimalist .mn-footer .meta{ font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); margin-top:16px; }
+  .layout-minimalist .mn-footer .meta a{ text-decoration:underline; }
+
+  @media(max-width:900px){
+    .layout-minimalist{ grid-template-columns:1fr; }
+    .layout-minimalist .mn-sidebar{ position:static; height:auto; border-right:none; border-bottom:1px solid var(--border); flex-direction:row; flex-wrap:wrap; align-items:center; }
+    .layout-minimalist .mn-main{ padding:0 24px 60px; }
+    .layout-minimalist .mn-grid-2{ grid-template-columns:1fr; }
+    .layout-minimalist .mn-skills-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+
+<script>
+/* ============================ SHARED DATA ============================ */
+const DATA = {
+  name: "Hassan Agyemang Boakye",
+  initials: "HAB",
+  roleShort: "Systems Administrator & Full-Stack Developer",
+  roleLong: "Systems Administrator and Full-Stack Developer building web, desktop, and mobile apps with React, Supabase, and Node.js — currently keeping a health center's IT infrastructure and patient systems running in Kumasi.",
+  location: "Kumasi, Ashanti Region, Ghana",
+  availability: "Available for work",
+  email: "poundsghst@gmail.com",
+  phone: "+233 25 691 8104",
+  github: "https://github.com/codedbyhassan",
+  githubLabel: "github.com/codedbyhassan",
+  linkedin: "https://www.linkedin.com/in/hassan-agyemang-boakye-987a043b1/",
+  linkedinLabel: "linkedin.com/in/hassan-agyemang-boakye",
+  badges: ["React / Vite","Supabase / PostgreSQL","Electron + Capacitor","Go · Java · PHP"],
+  stats: [
+    {num:"60+", label:"Staff supported across departments"},
+    {num:"50+", label:"Healthcare workers trained in IT"},
+    {num:"5", label:"Production apps shipped & live"}
+  ],
+  about: [
+    "I build production systems for real organizations — from a rural health center's billing and inventory system to community membership platforms — not portfolio filler. Most of what I ship runs offline-first, because the connectivity most of my users have is patchy at best.",
+    "By day I'm the Systems Administrator at Patricia Appiahgyei Health Center, where I keep workstations patched, staff trained, and a facility management system I built myself running in production. Before that, I supported 60+ staff and trained over 50 nurses in IT fundamentals during my national service.",
+    "Currently building toward launching an independent IT services and product firm based in Kumasi."
+  ],
+  projects: [
+    { title:"Hospital POS — Patricia Appiahgyei Health Center", desc:"Point-of-sale and inventory system built and deployed for a real clinic — Cash/NHIS billing, drug & service pricing, receipt history, and backup/restore. Cross-platform via web, Android, and desktop.", stack:"React 18 · TypeScript · Vite · Tailwind · shadcn/ui", source:"https://github.com/codedbyhassan/Hospital-POS-for-Pahc", demo:null },
+    { title:"Retailer POS", desc:"Offline-first point of sale, inventory, and reporting system for small retailers — keeps selling when the internet drops, syncing to Express/Supabase when back online. Full security audit completed.", stack:"React 19 · IndexedDB · Node/Express · Supabase", source:"https://github.com/codedbyhassan/Retailer-POS", demo:"https://v0-retailer.vercel.app/" },
+    { title:"Ecommerce Platform", desc:"Portfolio-quality storefront with a Nike / Aimé Leon Dore–grade editorial design, a full admin dashboard, and Paystack + MTN MoMo checkout.", stack:"React 19 · Tailwind v4 · Supabase · Drizzle ORM", source:"https://github.com/codedbyhassan/e-commerce-app", demo:"https://e-commerce-app-neon-seven.vercel.app/" },
+    { title:"Lumina School Management", desc:"Local-first school management platform for Ghanaian schools — on-demand cloud sync, conflict detection, and server-enforced license management. Fully functional offline.", stack:"React · Dexie (IndexedDB) · Supabase · Edge Functions", source:null, demo:null },
+    { title:"MKAASH Database", desc:"Membership and organizational management platform built for Majlis Khuddam-ul-Ahmadiyya, Ashanti Region — a unified system for managing members and activity tracking.", stack:"React · TypeScript · Supabase", source:"https://github.com/codedbyhassan/mkaashdatabase", demo:"https://v0-mkaash.vercel.app/" }
+  ],
+  experience: [
+    { date:"Jan 2026 — Present", title:"Systems Administrator", org:"Patricia Appiahgyei Health Center, Kumasi", bullets:[
+      "Manage all IT infrastructure — workstations, network equipment, and peripherals — for clinical and administrative staff.",
+      "Designed and built the facility's Hospital POS system, covering patient records, billing, inventory, and analytics.",
+      "Own the Supabase schema, auth, role-based access control, and API integrations end to end."
+    ]},
+    { date:"Oct 2024 — Sept 2025", title:"IT & Administrative Support Officer", org:"Asokwa Municipal Health Directorate, Kumasi (National Service)", bullets:[
+      "Primary IT support contact for 60+ staff across all departments.",
+      "Trained over 50 nurses in IT fundamentals and digital literacy.",
+      "Handled hardware repair, OS installs, and network diagnostics across the directorate."
+    ]},
+    { date:"Aug 2024", title:"Technical Assistant Intern", org:"Goodisper Limited (Engineering Firm), Kumasi", bullets:[
+      "HVAC installation, diagnostics, and cold room refrigeration systems."
+    ]}
+  ],
+  skills: {
+    "Languages & Frameworks": ["JavaScript","TypeScript","React","Go","Java","PHP"],
+    "Backend & Data": ["Node.js / Express","Supabase","PostgreSQL","Drizzle ORM"],
+    "Deployment": ["Netlify","Vercel","Electron","Capacitor"],
+    "Systems & Infra": ["Windows Admin","Network Troubleshooting","Security Auditing"]
+  }
+};
+
+/* ============================ HELPERS ============================ */
+const themeNames = { clean:"Clean / Professional", cyberpunk:"Cyberpunk", brutalist:"Brutalist", minimalist:"Minimalist / Swiss" };
+
+function switcherBtns(cls, extra=""){
+  return Object.keys(themeNames).map(k =>
+    `<button class="${cls==k?'active':''}" onclick="setTheme('${k}')">${themeNames[k]}${extra}</button>`
+  ).join("");
+}
+
+/* ============================ RENDER: CLEAN ============================ */
+function renderClean(active){
+  const projects = DATA.projects.map(p => `
+    <div class="c-project">
+      <h3>${p.title}</h3>
+      <p>${p.desc}</p>
+      <span class="c-stack">${p.stack}</span>
+      <div class="c-plinks">
+        ${p.source ? `<a href="${p.source}" target="_blank" rel="noopener">Source →</a>` : `<span style="color:var(--muted)">Private repo</span>`}
+        ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener">Live Demo →</a>` : ``}
+      </div>
+    </div>`).join("");
+
+  const exp = DATA.experience.map(e => `
+    <div class="c-titem">
+      <div class="date">${e.date}</div>
+      <h3>${e.title}</h3>
+      <span class="org">${e.org}</span>
+      <ul>${e.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+    </div>`).join("");
+
+  const skillRows = Object.entries(DATA.skills).map(([cat,items]) => `
+    <div class="c-skill-row"><span class="cat">${cat}</span><span class="items">${items.join(" · ")}</span></div>
+  `).join("");
+
+  return `
+  <div class="layout-clean">
+    <header class="c-nav"><div class="c-nav-inner">
+      <span class="c-logo">${DATA.initials}</span>
+      <nav class="c-links"><a href="#c-about">About</a><a href="#c-work">Work</a><a href="#c-exp">Experience</a><a href="#c-skills">Skills</a></nav>
+      <div class="c-switcher">${switcherBtns(active)}</div>
+    </div></header>
+
+    <section class="c-hero"><div class="c-wrap"><div class="c-hero-grid">
+      <div>
+        <span class="c-eyebrow">${DATA.location} · ${DATA.availability}</span>
+        <h1>${DATA.name}</h1>
+        <p class="c-role">${DATA.roleLong}</p>
+        <div class="c-badges">${DATA.badges.map(b=>`<span class="c-badge">${b}</span>`).join("")}</div>
+        <div class="c-cta">
+          <a class="c-btn" href="mailto:${DATA.email}">Email Me</a>
+          <a class="c-btn ghost" href="${DATA.github}" target="_blank" rel="noopener">View GitHub</a>
+        </div>
+      </div>
+      <aside class="c-hero-card">
+        <div class="c-card-row"><span>Location</span><strong>Kumasi, Ghana</strong></div>
+        <div class="c-card-row"><span>Status</span><strong>Available</strong></div>
+        <div class="c-card-row"><span>Phone</span><strong>${DATA.phone}</strong></div>
+        <div class="c-card-row"><span>Email</span><strong>${DATA.email}</strong></div>
+      </aside>
+    </div></div></section>
+
+    <section id="c-about"><div class="c-wrap">
+      <h2>About</h2>
+      <div class="c-about-cols">
+        <div class="c-about-text">${DATA.about.map(p=>`<p>${p}</p>`).join("")}</div>
+        <div class="c-stats">${DATA.stats.map(s=>`<div class="c-stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join("")}</div>
+      </div>
+    </div></section>
+
+    <section id="c-work"><div class="c-wrap">
+      <h2>Selected Work</h2>
+      <div class="c-project-grid">${projects}</div>
+    </div></section>
+
+    <section id="c-exp"><div class="c-wrap">
+      <h2>Experience</h2>
+      <div class="c-timeline">${exp}</div>
+    </div></section>
+
+    <section id="c-skills"><div class="c-wrap">
+      <h2>Skills</h2>
+      <div class="c-skill-rows">${skillRows}</div>
+    </div></section>
+
+    <footer><div class="c-wrap">
+      <h2>Let's build something that ships.</h2>
+      <a class="c-fbtn" href="mailto:${DATA.email}">${DATA.email}</a>
+      <div class="c-flinks">
+        <a href="${DATA.github}" target="_blank" rel="noopener">GitHub</a>
+        <a href="${DATA.linkedin}" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="tel:${DATA.phone.replace(/\s/g,'')}">${DATA.phone}</a>
+      </div>
+    </div></footer>
+  </div>`;
+}
+
+/* ============================ RENDER: CYBERPUNK ============================ */
+function renderCyberpunk(active){
+  const projRows = DATA.projects.map(p => `
+    <tr>
+      <td class="name">${p.title}</td>
+      <td>${p.stack}</td>
+      <td>${p.desc}</td>
+      <td>${p.source ? `<a href="${p.source}" target="_blank" rel="noopener">src</a>` : "—"} ${p.demo ? ` / <a href="${p.demo}" target="_blank" rel="noopener">demo</a>` : ""}</td>
+    </tr>`).join("");
+
+  const expLog = DATA.experience.map(e => `
+    <div class="cy-log">
+      <span class="ts">[${e.date}]</span>
+      <h3>${e.title}</h3>
+      <span class="org">@ ${e.org}</span>
+      <ul>${e.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+    </div>`).join("");
+
+  const skillGroups = Object.entries(DATA.skills).map(([cat,items]) => `
+    <div class="cy-skillgroup">
+      <div class="lbl">${cat}</div>
+      <div class="cy-chip-row">${items.map(i=>`<span class="cy-chip">[${i}]</span>`).join("")}</div>
+    </div>`).join("");
+
+  return `
+  <div class="layout-cyberpunk">
+    <aside class="cy-sidebar">
+      <div>
+        <pre class="cy-ascii">${DATA.initials} :: DEV.SYS</pre>
+        <div class="cy-status">● ONLINE — ${DATA.location}</div>
+      </div>
+      <nav class="cy-nav">
+        <a href="#cy-about">$ cd about</a>
+        <a href="#cy-projects">$ cd projects</a>
+        <a href="#cy-exp">$ cd experience</a>
+        <a href="#cy-skills">$ cd skills</a>
+        <a href="#cy-contact">$ cd contact</a>
+      </nav>
+      <div class="cy-switcher">
+        <div class="lbl">// select_theme</div>
+        ${switcherBtns(active)}
+      </div>
+      <div class="cy-stats">
+        ${DATA.stats.map(s=>`<div class="cy-stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join("")}
+      </div>
+    </aside>
+
+    <main class="cy-main">
+      <section class="cy-hero"><div class="cy-window">
+        <div class="cy-titlebar"><span></span><span></span><span></span>&nbsp;boot.sh</div>
+        <div class="cy-window-body">
+          <p class="cy-prompt">&gt; whoami</p>
+          <h1>${DATA.name}</h1>
+          <p class="cy-role">${DATA.roleLong}</p>
+          <div class="cy-badges">${DATA.badges.map(b=>`<span class="cy-badge">${b}</span>`).join("")}</div>
+          <div class="cy-cta">
+            <a class="cy-btn" href="mailto:${DATA.email}">email --send</a>
+            <a class="cy-btn ghost" href="${DATA.github}" target="_blank" rel="noopener">github --open</a>
+          </div>
+        </div>
+      </div></section>
+
+      <section id="cy-about"><div class="cy-window">
+        <div class="cy-titlebar"><span></span><span></span><span></span>&nbsp;about.log</div>
+        <div class="cy-window-body">${DATA.about.map(p=>`<p class="plain">${p}</p>`).join("")}</div>
+      </div></section>
+
+      <section id="cy-projects"><div class="cy-window">
+        <div class="cy-titlebar"><span></span><span></span><span></span>&nbsp;ls -la ~/projects</div>
+        <div class="cy-window-body"><table class="cy-table">
+          <thead><tr><th>name</th><th>stack</th><th>desc</th><th>link</th></tr></thead>
+          <tbody>${projRows}</tbody>
+        </table></div>
+      </div></section>
+
+      <section id="cy-exp"><div class="cy-window">
+        <div class="cy-titlebar"><span></span><span></span><span></span>&nbsp;system.log</div>
+        <div class="cy-window-body">${expLog}</div>
+      </div></section>
+
+      <section id="cy-skills"><div class="cy-window">
+        <div class="cy-titlebar"><span></span><span></span><span></span>&nbsp;loadout.cfg</div>
+        <div class="cy-window-body">${skillGroups}</div>
+      </div></section>
+
+      <footer id="cy-contact" class="cy-footer"><div class="cy-window">
+        <div class="cy-titlebar"><span></span><span></span><span></span>&nbsp;contact.sh</div>
+        <div class="cy-window-body">
+          <div>&gt; email: <a href="mailto:${DATA.email}">${DATA.email}</a></div>
+          <div>&gt; phone: ${DATA.phone}</div>
+          <div>&gt; github: <a href="${DATA.github}" target="_blank" rel="noopener">${DATA.githubLabel}</a></div>
+          <div>&gt; linkedin: <a href="${DATA.linkedin}" target="_blank" rel="noopener">${DATA.linkedinLabel}</a></div>
+        </div>
+      </div></footer>
+    </main>
+  </div>`;
+}
+
+/* ============================ RENDER: BRUTALIST ============================ */
+function renderBrutalist(active){
+  const prows = DATA.projects.map((p,i) => `
+    <div class="br-prow">
+      <div class="idx">${String(i+1).padStart(2,'0')}</div>
+      <div>
+        <h3>${p.title}</h3>
+        <p>${p.desc}</p>
+        <div class="stack">${p.stack}</div>
+        <div class="links">
+          ${p.source ? `<a href="${p.source}" target="_blank" rel="noopener">SOURCE</a>` : `<span>PRIVATE REPO</span>`}
+          ${p.demo ? `<a href="${p.demo}" target="_blank" rel="noopener">LIVE DEMO</a>` : ``}
+        </div>
+      </div>
+    </div>`).join("");
+
+  const ecards = DATA.experience.map(e => `
+    <div class="br-ecard">
+      <span class="date">${e.date}</span>
+      <h3>${e.title}</h3>
+      <span class="org">${e.org}</span>
+      <ul>${e.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+    </div>`).join("");
+
+  const allSkills = Object.values(DATA.skills).flat();
+  const sizes = ["lg","md","sm"];
+  const words = allSkills.map((s,i) => `<span class="br-word ${sizes[i%3]}">${s}</span>`).join("");
+
+  return `
+  <div class="layout-brutalist">
+    <div class="br-topbar">
+      <span class="br-issue">PORTFOLIO — ISSUE Nº01</span>
+      <div class="br-switcher">${switcherBtns(active)}</div>
+    </div>
+
+    <section class="br-hero">
+      <h1 class="br-giant">${DATA.name}</h1>
+      <div class="br-hero-meta">
+        <span class="br-stamp">${DATA.location}</span>
+        <span class="br-stamp">${DATA.availability}</span>
+      </div>
+      <p class="br-role">${DATA.roleLong}</p>
+      <div class="br-badges">${DATA.badges.map(b=>`<span class="br-badge">${b}</span>`).join("")}</div>
+      <div class="br-cta">
+        <a class="br-btn" href="mailto:${DATA.email}">EMAIL ME</a>
+        <a class="br-btn ghost" href="${DATA.github}" target="_blank" rel="noopener">VIEW GITHUB</a>
+      </div>
+    </section>
+
+    <section class="br-about"><div class="br-wrap">
+      <span class="br-marker">ABOUT</span>
+      <div class="br-row">
+        <div></div>
+        <div class="br-about-text">${DATA.about.map(p=>`<p>${p}</p>`).join("")}</div>
+      </div>
+      <div class="br-stat-strip">${DATA.stats.map(s=>`<div class="br-stat"><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join("")}</div>
+    </div></section>
+
+    <section class="br-projects"><div class="br-wrap">
+      <span class="br-marker">WORK</span>
+      ${prows}
+    </div></section>
+
+    <section class="br-exp"><div class="br-wrap">
+      <span class="br-marker">EXPERIENCE</span>
+      ${ecards}
+    </div></section>
+
+    <section class="br-skills"><div class="br-wrap">
+      <span class="br-marker">SKILLS</span>
+      <div class="br-skill-cloud">${words}</div>
+    </div></section>
+
+    <footer>
+      <h2>Let's build something that actually ships.</h2>
+      <a class="br-fbtn" href="mailto:${DATA.email}">${DATA.email}</a>
+      <div class="br-flinks">
+        <a href="${DATA.github}" target="_blank" rel="noopener">GITHUB</a>
+        <a href="${DATA.linkedin}" target="_blank" rel="noopener">LINKEDIN</a>
+        <a href="tel:${DATA.phone.replace(/\s/g,'')}">${DATA.phone}</a>
+      </div>
+    </footer>
+  </div>`;
+}
+
+/* ============================ RENDER: MINIMALIST ============================ */
+function renderMinimalist(active){
+  const prows = DATA.projects.map((p,i) => `
+    <tr>
+      <td class="idx">${String(i+1).padStart(2,'0')}</td>
+      <td>${p.title}<div class="muted" style="margin-top:4px;">${p.desc}</div></td>
+      <td class="stack">${p.stack}</td>
+      <td>${p.source ? `<a href="${p.source}" target="_blank" rel="noopener">Source</a>` : `<span class="muted">Private</span>`}${p.demo ? ` / <a href="${p.demo}" target="_blank" rel="noopener">Demo</a>` : ``}</td>
+    </tr>`).join("");
+
+  const exprows = DATA.experience.map(e => `
+    <div class="mn-exp-row">
+      <div class="yr">${e.date}</div>
+      <div>
+        <h3>${e.title}</h3>
+        <span class="org">${e.org}</span>
+        <ul>${e.bullets.map(b=>`<li>${b}</li>`).join("")}</ul>
+      </div>
+    </div>`).join("");
+
+  const skillCats = Object.entries(DATA.skills).map(([cat,items]) => `
+    <div class="mn-skill-cat">
+      <div class="lbl">${cat}</div>
+      <ul>${items.map(i=>`<li>${i}</li>`).join("")}</ul>
+    </div>`).join("");
+
+  return `
+  <div class="layout-minimalist">
+    <aside class="mn-sidebar">
+      <div>
+        <div class="mn-name">${DATA.name}</div>
+        <div class="mn-role-small">${DATA.roleShort}</div>
+      </div>
+      <nav class="mn-nav">
+        <a href="#mn-about">01 — About</a>
+        <a href="#mn-projects">02 — Work</a>
+        <a href="#mn-exp">03 — Experience</a>
+        <a href="#mn-skills">04 — Skills</a>
+        <a href="#mn-contact">05 — Contact</a>
+      </nav>
+      <div class="mn-switcher">${switcherBtns(active)}</div>
+      <div class="mn-contact-mini">
+        <div><a href="mailto:${DATA.email}">${DATA.email}</a></div>
+        <div>${DATA.phone}</div>
+        <div>${DATA.location}</div>
+      </div>
+    </aside>
+
+    <main class="mn-main">
+      <section class="mn-hero">
+        <h1>${DATA.roleLong.replace('React, Supabase, and Node.js', '<span class="hl">React, Supabase, and Node.js</span>')}</h1>
+      </section>
+
+      <section id="mn-about" class="mn-section">
+        <div class="mn-label">01 — About</div>
+        <div class="mn-grid-2">
+          <div></div>
+          <div>${DATA.about.map(p=>`<p>${p}</p>`).join("")}</div>
+        </div>
+        <div class="mn-stat-table">${DATA.stats.map(s=>`<div><div class="num">${s.num}</div><div class="label">${s.label}</div></div>`).join("")}</div>
+      </section>
+
+      <section id="mn-projects" class="mn-section">
+        <div class="mn-label">02 — Selected Work</div>
+        <table class="mn-table">
+          <thead><tr><th>Idx</th><th>Project</th><th>Stack</th><th>Link</th></tr></thead>
+          <tbody>${prows}</tbody>
+        </table>
+      </section>
+
+      <section id="mn-exp" class="mn-section">
+        <div class="mn-label">03 — Experience</div>
+        ${exprows}
+      </section>
+
+      <section id="mn-skills" class="mn-section">
+        <div class="mn-label">04 — Skills</div>
+        <div class="mn-skills-grid">${skillCats}</div>
+      </section>
+
+      <footer id="mn-contact" class="mn-section mn-footer">
+        <div class="mn-label">05 — Contact</div>
+        <div class="big">Let's build something that ships.</div>
+        <a class="email" href="mailto:${DATA.email}">${DATA.email}</a>
+        <div class="meta">
+          ${DATA.phone} — ${DATA.location}<br>
+          <a href="${DATA.github}" target="_blank" rel="noopener">${DATA.githubLabel}</a> ·
+          <a href="${DATA.linkedin}" target="_blank" rel="noopener">${DATA.linkedinLabel}</a>
+        </div>
+      </footer>
+    </main>
+  </div>`;
+}
+
+/* ============================ SWITCH LOGIC ============================ */
+const renderers = { clean:renderClean, cyberpunk:renderCyberpunk, brutalist:renderBrutalist, minimalist:renderMinimalist };
+
+function setTheme(name){
+  document.getElementById('app').innerHTML = renderers[name](name);
+  document.body.style.background = getComputedStyle(document.querySelector('.layout-'+name)).backgroundColor;
+  window.scrollTo(0,0);
+}
+
+setTheme('clean');
+</script>
+</body>
+</html>
