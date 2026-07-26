@@ -1,0 +1,144 @@
+/* Fade In Up Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Card Animations */
+.animated-card {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.animated-card.hoverable {
+  transition: all 0.3s ease-out;
+}
+
+.animated-card.hoverable:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Stagger Container */
+.stagger-container > div {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+/* Expandable Section */
+.expandable-section {
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease-out;
+}
+
+.expandable-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease-out;
+  gap: 12px;
+}
+
+.expandable-header:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.expandable-title {
+  flex: 1;
+  text-align: left;
+}
+
+.expandable-icon {
+  transition: transform 0.3s ease-out;
+  display: inline-flex;
+  font-size: 12px;
+}
+
+.expandable-icon.open {
+  transform: rotate(90deg);
+}
+
+.expandable-content {
+  animation: slideInDown 0.3s ease-out;
+  padding: 16px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+  }
+}
+
+/* Animated Counter */
+.animated-counter {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
