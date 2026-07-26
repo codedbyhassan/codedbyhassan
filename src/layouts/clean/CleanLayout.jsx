@@ -1,177 +1,162 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { DATA } from '../../data/portfolioData';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
 import './clean.css';
 
-const AnimatedCounter = ({ target, duration = 2500 }) => {
-  const [count, setCount] = useState(0);
-
-  useEffect(() => {
-    let start = 0;
-    const increment = target / (duration / 16);
-    const timer = setInterval(() => {
-      start += increment;
-      if (start >= target) {
-        setCount(target);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(start));
-      }
-    }, 16);
-    return () => clearInterval(timer);
-  }, [target, duration]);
-
-  return <span>{count}</span>;
-};
-
-const ProjectCard = ({ project, index }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div 
-      className="project-card"
-      style={{ animationDelay: `${index * 80}ms` }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <div className="project-number">{String(index + 1).padStart(2, '0')}</div>
-      <div className="project-content">
-        <h3>{project.title}</h3>
-        <p>{project.desc}</p>
-        <div className="project-tech">
-          {project.stack.split(',').slice(0, 4).map((tech, i) => (
-            <span key={i}>{tech.trim()}</span>
-          ))}
-        </div>
-        <div className="project-actions">
-          {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">View Live</a>}
-          {project.source && <a href={project.source} target="_blank" rel="noopener noreferrer">Source Code</a>}
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const ExperienceItem = ({ exp, index, isExpanded, onToggle }) => (
-  <div 
-    className={`experience-item ${isExpanded ? 'open' : ''}`}
-    style={{ animationDelay: `${index * 100}ms` }}
-  >
-    <button className="exp-toggle" onClick={() => onToggle(index)}>
-      <div className="exp-title-group">
-        <span className="exp-date">{exp.date}</span>
-        <h3>{exp.title}</h3>
-        <p className="exp-company">{exp.org}</p>
-      </div>
-      <span className="chevron">›</span>
-    </button>
-    {isExpanded && (
-      <div className="exp-details">
-        <ul>
-          {exp.details.map((detail, i) => (
-            <li key={i}>{detail}</li>
-          ))}
-        </ul>
-      </div>
-    )}
-  </div>
-);
-
 export default function CleanLayout() {
   const [expandedExp, setExpandedExp] = useState(0);
-
-  const toggleExperience = (index) => {
-    setExpandedExp(expandedExp === index ? -1 : index);
-  };
 
   return (
     <div className="layout-clean">
       {/* Navigation */}
-      <nav className="clean-navbar">
+      <nav className="navbar">
         <div className="nav-container">
-          <div className="nav-brand">HA</div>
-          <div className="nav-menu">
-            <a href="#work">Work</a>
+          <div className="nav-logo">Hassan</div>
+          <div className="nav-links">
+            <a href="#projects">Projects</a>
+            <a href="#about">About</a>
             <a href="#experience">Experience</a>
-            <a href="#skills">Skills</a>
           </div>
-          <ThemeSwitcher />
+          <button className="cta-nav">Get In Touch</button>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="hero">
-        <div className="container">
+        <div className="hero-container">
           <div className="hero-content">
-            <span className="hero-subtitle">Systems Administrator & Full-Stack Developer</span>
-            <h1>Building production systems that drive real impact</h1>
-            <p>I design and deploy full-stack applications across web, desktop, and mobile platforms. From healthcare facilities to retail operations, I focus on building scalable, offline-first systems for real organizations.</p>
-            <div className="hero-buttons">
-              <a href={`mailto:${DATA.email}`} className="btn btn-dark">Get In Touch</a>
-              <a href={`https://${DATA.github}`} target="_blank" rel="noopener noreferrer" className="btn btn-light">View My Work</a>
-            </div>
+            <p className="hero-subtitle">Hey, I'm a</p>
+            <h1 className="hero-title">Systems Administrator & Full-Stack Developer</h1>
+            <div className="hero-divider"></div>
             <div className="hero-stats">
-              {DATA.stats.map((stat, idx) => (
-                <div key={idx} className="stat" style={{ animationDelay: `${idx * 80}ms` }}>
-                  <div className="stat-value"><AnimatedCounter target={parseInt(stat.value.replace(/\D/g, ''))} /></div>
-                  <div className="stat-label">{stat.label}</div>
-                </div>
-              ))}
+              <div className="stat-item">
+                <span className="stat-number">01</span>
+                <span className="stat-label">Infrastructure</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-number">02</span>
+                <span className="stat-label">Web Development</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-number">03</span>
+                <span className="stat-label">Cross-Platform Apps</span>
+              </div>
+              <div className="stat-item">
+                <span className="stat-number">04</span>
+                <span className="stat-label">Technical Support</span>
+              </div>
             </div>
+          </div>
+          <div className="hero-visual">
+            <div className="profile-silhouette"></div>
+          </div>
+        </div>
+      </section>
+
+      {/* Brands Section */}
+      <section className="brands">
+        <div className="brands-container">
+          <p className="brands-label">Trusted by organizations I've helped shape:</p>
+          <div className="brands-grid">
+            <div className="brand-item">Patricia Appiahgyei Health Center</div>
+            <div className="brand-item">Asokwa Municipal Health</div>
+            <div className="brand-item">KNUST</div>
+            <div className="brand-item">MKAASH</div>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Section */}
+      <section className="featured" id="about">
+        <div className="featured-container">
+          <div className="featured-content">
+            <h2 className="featured-title">Building Systems That Scale</h2>
+            <h3 className="featured-subtitle">I create production applications that drive real impact</h3>
+            <p className="featured-description">
+              {DATA.bio}
+            </p>
+            <a href={`mailto:${DATA.email}`} className="btn-featured">
+              Get In Touch
+              <span className="arrow">→</span>
+            </a>
+          </div>
+          <div className="featured-cards">
+            <div className="featured-card card-1"></div>
+            <div className="featured-card card-2"></div>
+            <div className="featured-card card-3"></div>
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="work" className="projects">
-        <div className="container">
-          <div className="section-header">
-            <h2>Featured Work</h2>
-            <p>Projects built for real organizations solving real problems</p>
-          </div>
-          <div className="projects-list">
+      <section className="projects" id="projects">
+        <div className="projects-container">
+          <h2 className="section-title">Featured Projects</h2>
+          <div className="projects-grid">
             {DATA.projects.map((project, idx) => (
-              <ProjectCard key={idx} project={project} index={idx} />
+              <div key={idx} className="project-item" style={{ animationDelay: `${idx * 100}ms` }}>
+                <div className="project-number">{String(idx + 1).padStart(2, '0')}</div>
+                <h3>{project.title}</h3>
+                <p>{project.desc}</p>
+                <div className="project-tech">
+                  {project.stack.split(',').slice(0, 3).map((tech, i) => (
+                    <span key={i}>{tech.trim()}</span>
+                  ))}
+                </div>
+                <div className="project-links">
+                  {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">Live →</a>}
+                  {project.source && <a href={project.source} target="_blank" rel="noopener noreferrer">Code →</a>}
+                </div>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="experience">
-        <div className="container">
-          <div className="section-header">
-            <h2>Professional Experience</h2>
-            <p>Roles that shaped my expertise in systems and development</p>
-          </div>
-          <div className="experience-timeline">
+      <section className="experience" id="experience">
+        <div className="experience-container">
+          <h2 className="section-title">Experience</h2>
+          <div className="experience-list">
             {DATA.experience.map((exp, idx) => (
-              <ExperienceItem 
-                key={idx} 
-                exp={exp} 
-                index={idx} 
-                isExpanded={expandedExp === idx}
-                onToggle={toggleExperience}
-              />
+              <div key={idx} className="exp-item" style={{ animationDelay: `${idx * 80}ms` }}>
+                <button 
+                  className="exp-header"
+                  onClick={() => setExpandedExp(expandedExp === idx ? -1 : idx)}
+                >
+                  <div className="exp-info">
+                    <span className="exp-date">{exp.date}</span>
+                    <h3>{exp.title}</h3>
+                    <p className="exp-org">{exp.org}</p>
+                  </div>
+                  <span className={`exp-chevron ${expandedExp === idx ? 'open' : ''}`}>›</span>
+                </button>
+                {expandedExp === idx && (
+                  <div className="exp-details">
+                    <ul>
+                      {exp.details.map((detail, i) => (
+                        <li key={i}>{detail}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="skills">
-        <div className="container">
-          <div className="section-header">
-            <h2>Technical Skills</h2>
-            <p>Technologies and tools I work with daily</p>
-          </div>
+      <section className="skills">
+        <div className="skills-container">
+          <h2 className="section-title">Skills & Technologies</h2>
           <div className="skills-grid">
             {DATA.skills.map((skill, idx) => (
-              <div key={idx} className="skill-group" style={{ animationDelay: `${idx * 80}ms` }}>
+              <div key={idx} className="skill-group" style={{ animationDelay: `${idx * 60}ms` }}>
                 <h4>{skill.category}</h4>
-                <div className="skill-tags">
+                <div className="skill-items">
                   {skill.items.split(',').map((item, i) => (
-                    <span key={i} className="skill-tag">{item.trim()}</span>
+                    <span key={i} className="skill-badge">{item.trim()}</span>
                   ))}
                 </div>
               </div>
@@ -180,51 +165,28 @@ export default function CleanLayout() {
         </div>
       </section>
 
-      {/* Education & References */}
-      <section className="education-refs">
-        <div className="container">
-          <div className="edu-ref-grid">
-            <div className="edu-col">
-              <h3>Education</h3>
-              {DATA.education.map((edu, idx) => (
-                <div key={idx} className="edu-item">
-                  <p className="degree">{edu.degree}</p>
-                  <p className="school">{edu.school}</p>
-                  <p className="year">{edu.year}</p>
-                </div>
-              ))}
-            </div>
-            <div className="refs-col">
-              <h3>References</h3>
-              {DATA.references.map((ref, idx) => (
-                <div key={idx} className="ref-item">
-                  <p className="name">{ref.name}</p>
-                  <p className="title">{ref.title}</p>
-                  <a href={`tel:${ref.phone}`}>{ref.phone}</a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* CTA Section */}
-      <section className="cta">
-        <div className="container">
-          <h2>Let's create something amazing</h2>
-          <p>I'm always open to discussing new projects, innovative ideas, or opportunities to be part of your vision.</p>
-          <a href={`mailto:${DATA.email}`} className="btn btn-dark btn-large">Start a Conversation</a>
+      <section className="final-cta">
+        <div className="cta-container">
+          <h2>Ready to build something great?</h2>
+          <p>I'm always open to new opportunities and interesting projects.</p>
+          <a href={`mailto:${DATA.email}`} className="cta-button">
+            Get In Touch
+            <span>↗</span>
+          </a>
         </div>
       </section>
 
       {/* Footer */}
       <footer className="footer">
-        <div className="container">
-          <p>&copy; 2026 {DATA.name}. All rights reserved.</p>
-          <div className="footer-links">
-            <a href={`mailto:${DATA.email}`}>Email</a>
-            <a href={`https://${DATA.github}`} target="_blank" rel="noopener noreferrer">GitHub</a>
-            <a href={`https://${DATA.linkedin}`} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <div className="footer-container">
+          <div className="footer-content">
+            <p>&copy; 2026 {DATA.name}</p>
+            <div className="footer-links">
+              <a href={`https://${DATA.github}`} target="_blank" rel="noopener noreferrer">GitHub</a>
+              <a href={`https://${DATA.linkedin}`} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+              <a href={`mailto:${DATA.email}`}>Email</a>
+            </div>
           </div>
         </div>
       </footer>
