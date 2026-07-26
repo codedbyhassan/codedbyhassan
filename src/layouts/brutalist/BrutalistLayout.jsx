@@ -90,22 +90,29 @@ export default function BrutalistLayout({ activeTheme, onThemeChange }) {
       <div className="br-wrap">
         {/* Hero */}
         <section className="br-hero">
-          <h1 className="br-giant">{DATA.name.split(' ')[0]}</h1>
-          <div className="br-hero-meta">
-            <div className="br-stamp">Full Stack</div>
-            <div className="br-stamp">Systems Admin</div>
-            <div className="br-stamp">Ghana</div>
-          </div>
-          <p className="br-role">{DATA.bio}</p>
-          <div className="br-badges">
-            <div className="br-badge">React</div>
-            <div className="br-badge">Supabase</div>
-            <div className="br-badge">Node.js</div>
-            <div className="br-badge">TypeScript</div>
-          </div>
-          <div className="br-cta">
-            <button className="br-btn">Get In Touch</button>
-            <button className="br-btn ghost">View Work</button>
+          <div className="br-hero-grid">
+            <div className="br-hero-content">
+              <h1 className="br-giant">{DATA.name.split(' ')[0]}</h1>
+              <div className="br-hero-meta">
+                <div className="br-stamp">Full Stack</div>
+                <div className="br-stamp">Systems Admin</div>
+                <div className="br-stamp">Ghana</div>
+              </div>
+              <p className="br-role">{DATA.bio}</p>
+              <div className="br-badges">
+                <div className="br-badge">React</div>
+                <div className="br-badge">Supabase</div>
+                <div className="br-badge">Node.js</div>
+                <div className="br-badge">TypeScript</div>
+              </div>
+              <div className="br-cta">
+                <button className="br-btn">Get In Touch</button>
+                <button className="br-btn ghost">View Work</button>
+              </div>
+            </div>
+            <div className="br-hero-image">
+              <img src="/images/hassan-hero.jpg" alt={DATA.name} className="br-profile-img" />
+            </div>
           </div>
         </section>
 

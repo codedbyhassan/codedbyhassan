@@ -78,9 +78,12 @@ export default function MinimalistLayout({ activeTheme, onThemeChange }) {
       {/* Header */}
       <header className="m-header">
         <div className="m-header-content">
-          <div>
+          <div className="m-header-text">
             <h1>{DATA.name}</h1>
             <p>{DATA.bio}</p>
+          </div>
+          <div className="m-header-image">
+            <img src="/images/hassan-hero.jpg" alt={DATA.name} className="m-profile-img" />
           </div>
           <ThemeSwitcher active={activeTheme} onChange={onThemeChange} />
         </div>

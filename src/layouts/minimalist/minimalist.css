@@ -45,13 +45,49 @@
 }
 
 .layout-minimalist .m-header-content {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 48px 24px;
+  padding: 40px 24px;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  align-items: center;
+  gap: 40px;
+}
+
+.layout-minimalist .m-header-text {
+  flex: 1;
+}
+
+.layout-minimalist .m-header-image {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 24px;
+  align-items: center;
+}
+
+.layout-minimalist .m-profile-img {
+  width: 140px;
+  height: 140px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.layout-minimalist .m-profile-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 768px) {
+  .layout-minimalist .m-header-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .layout-minimalist .m-profile-img {
+    width: 120px;
+    height: 120px;
+  }
 }
 
 .layout-minimalist .m-header h1 {

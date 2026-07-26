@@ -108,19 +108,24 @@ export default function CyberpunkLayout({ activeTheme, onThemeChange }) {
             <span></span>
             <span>profile.exe</span>
           </div>
-          <div className="cy-window-body">
-            <div className="cy-prompt">$&gt; whoami</div>
-            <h1>{DATA.name}</h1>
-            <p className="cy-role">{DATA.bio}</p>
-            <div className="cy-badges">
-              <div className="cy-badge">React 19</div>
-              <div className="cy-badge">Supabase</div>
-              <div className="cy-badge">Node.js</div>
-              <div className="cy-badge">SysAdmin</div>
+          <div className="cy-window-body cy-hero-body">
+            <div className="cy-hero-left">
+              <div className="cy-prompt">$&gt; whoami</div>
+              <h1>{DATA.name}</h1>
+              <p className="cy-role">{DATA.bio}</p>
+              <div className="cy-badges">
+                <div className="cy-badge">React 19</div>
+                <div className="cy-badge">Supabase</div>
+                <div className="cy-badge">Node.js</div>
+                <div className="cy-badge">SysAdmin</div>
+              </div>
+              <div className="cy-cta">
+                <button className="cy-btn">Get In Touch</button>
+                <button className="cy-btn ghost">View GitHub</button>
+              </div>
             </div>
-            <div className="cy-cta">
-              <button className="cy-btn">Get In Touch</button>
-              <button className="cy-btn ghost">View GitHub</button>
+            <div className="cy-hero-right">
+              <img src="/images/hassan-hero.jpg" alt={DATA.name} className="cy-profile-img" />
             </div>
           </div>
         </div>

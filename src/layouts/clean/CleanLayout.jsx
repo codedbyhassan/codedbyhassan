@@ -48,7 +48,7 @@ export default function CleanLayout() {
             </div>
           </div>
           <div className="hero-visual">
-            <div className="profile-silhouette"></div>
+            <img src="/images/hassan-hero.jpg" alt="Hassan Boakye" className="hero-image" />
           </div>
         </div>
       </section>

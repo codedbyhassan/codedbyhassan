@@ -91,6 +91,47 @@
   border-bottom: 3px solid var(--border);
 }
 
+.layout-brutalist .br-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.layout-brutalist .br-hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.layout-brutalist .br-hero-image {
+  display: flex;
+  justify-content: center;
+}
+
+.layout-brutalist .br-profile-img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  border: 3px solid var(--border);
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.layout-brutalist .br-profile-img:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0 rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 968px) {
+  .layout-brutalist .br-hero-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
 .layout-brutalist .br-giant {
   font-family: 'Archivo Black', sans-serif;
   font-size: clamp(42px, 9vw, 100px);
