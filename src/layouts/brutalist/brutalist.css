@@ -1,3 +1,25 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes stampRotate {
+  0% {
+    transform: rotate(-1.5deg) scale(0.95);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(-1.5deg) scale(1);
+    opacity: 1;
+  }
+}
+
 .layout-brutalist {
   --bg: #F2F0EA;
   --surface: #FFFFFF;
@@ -215,14 +237,37 @@
   border: 3px solid var(--border);
   background: var(--surface);
   margin-bottom: 22px;
-  padding: 26px;
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  gap: 22px;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.layout-brutalist .br-prow.expanded {
+  box-shadow: 8px 8px 0 var(--border);
+  transform: translate(-2px, -2px);
 }
 
 .layout-brutalist .br-prow:nth-child(even) {
   background: var(--yellow);
+}
+
+.layout-brutalist .br-prow-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 22px;
+  align-items: flex-start;
+  padding: 26px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.layout-brutalist .br-prow-header:hover {
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .layout-brutalist .br-prow .idx {
@@ -231,10 +276,44 @@
   line-height: 1;
 }
 
+.layout-brutalist .br-prow-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
 .layout-brutalist .br-prow h3 {
   font-size: 20px;
   text-transform: uppercase;
-  margin-bottom: 8px;
+  margin: 0;
+}
+
+.layout-brutalist .br-expand {
+  font-size: 16px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.layout-brutalist .br-prow.expanded .br-expand {
+  transform: rotate(90deg);
+}
+
+.layout-brutalist .br-prow-content {
+  padding: 0 26px 26px;
+  border-top: 2px solid var(--border);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
 }
 
 .layout-brutalist .br-prow p {
@@ -248,6 +327,9 @@
   font-weight: 700;
   margin-bottom: 10px;
   display: block;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 4px 8px;
+  border: 1px solid var(--border);
 }
 
 .layout-brutalist .br-prow .links {
@@ -258,8 +340,25 @@
 }
 
 .layout-brutalist .br-prow .links a {
-  text-decoration: underline;
+  text-decoration: none;
   cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.layout-brutalist .br-prow .links a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background: var(--text);
+  transition: width 0.3s ease;
+}
+
+.layout-brutalist .br-prow .links a:hover::after {
+  width: 100%;
 }
 
 .layout-brutalist .br-exp {
@@ -270,9 +369,44 @@
 .layout-brutalist .br-ecard {
   border: 3px solid var(--border);
   background: var(--surface);
-  padding: 22px;
+  overflow: hidden;
   margin-bottom: 20px;
-  box-shadow: 6px 6px 0 var(--border);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.layout-brutalist .br-ecard.expanded {
+  box-shadow: 8px 8px 0 var(--border);
+  transform: translate(-2px, -2px);
+}
+
+.layout-brutalist .br-ecard-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 22px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.layout-brutalist .br-ecard-header:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+
+.layout-brutalist .br-toggle {
+  font-size: 14px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.layout-brutalist .br-ecard.expanded .br-toggle {
+  transform: rotate(90deg);
 }
 
 .layout-brutalist .br-ecard .date {
@@ -288,6 +422,7 @@
 .layout-brutalist .br-ecard h3 {
   font-size: 18px;
   text-transform: uppercase;
+  margin: 0;
 }
 
 .layout-brutalist .br-ecard .org {
@@ -295,7 +430,9 @@
   color: var(--accent);
   font-weight: 700;
   display: block;
-  margin-bottom: 10px;
+  margin: 22px 22px 0;
+  padding-top: 22px;
+  border-top: 2px solid var(--border);
 }
 
 .layout-brutalist .br-ecard li {
@@ -338,12 +475,31 @@
   align-items: center;
 }
 
+.layout-brutalist .br-skillgroup {
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.layout-brutalist .br-skill-title {
+  color: var(--accent);
+}
+
 .layout-brutalist .br-word {
   font-family: 'Archivo Black', sans-serif;
   text-transform: uppercase;
   border: 2px solid var(--border);
   padding: 6px 14px;
   background: var(--surface);
+  animation: stampRotate 0.5s ease-out forwards;
+  opacity: 0;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.layout-brutalist .br-word:hover {
+  background: var(--yellow);
+  transform: scale(1.05) rotate(0.5deg);
+  box-shadow: 2px 2px 0 var(--border);
 }
 
 .layout-brutalist .br-footer {

@@ -1,41 +1,78 @@
+import React, { useState } from 'react';
 import { DATA } from '../../data/portfolioData';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
 import './brutalist.css';
 
-const ProjectRow = ({ project, idx }) => (
-  <div className="br-prow">
-    <div className="idx">{String(idx + 1).padStart(2, '0')}</div>
-    <div>
-      <h3>{project.title}</h3>
-      <p>{project.desc}</p>
-      <span className="stack">{project.stack}</span>
-      <div className="links">
-        {project.source && <a href={project.source} target="_blank" rel="noopener noreferrer">Source</a>}
-        {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">Live</a>}
-      </div>
+const ProjectRow = ({ project, idx }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  return (
+    <div 
+      className={`br-prow ${isExpanded ? 'expanded' : ''}`}
+      style={{ animationDelay: `${idx * 80}ms` }}
+    >
+      <button 
+        className="br-prow-header"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <div className="idx">{String(idx + 1).padStart(2, '0')}</div>
+        <div className="br-prow-title">
+          <h3>{project.title}</h3>
+          <span className="br-expand">≡</span>
+        </div>
+      </button>
+      {isExpanded && (
+        <div className="br-prow-content">
+          <p>{project.desc}</p>
+          <span className="stack">{project.stack}</span>
+          <div className="links">
+            {project.source && <a href={project.source} target="_blank" rel="noopener noreferrer">Source</a>}
+            {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">Live</a>}
+          </div>
+        </div>
+      )}
     </div>
-  </div>
-);
+  );
+};
 
-const ExpCard = ({ exp }) => (
-  <div className="br-ecard">
-    <span className="date">{exp.date}</span>
-    <h3>{exp.title}</h3>
-    <span className="org">{exp.org}</span>
-    <ul>
-      {exp.details.map((detail, idx) => (
-        <li key={idx}>{detail}</li>
-      ))}
-    </ul>
-  </div>
-);
+const ExpCard = ({ exp, index }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  return (
+    <div 
+      className={`br-ecard ${isExpanded ? 'expanded' : ''}`}
+      style={{ animationDelay: `${index * 80}ms` }}
+    >
+      <button 
+        className="br-ecard-header"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <div>
+          <span className="date">{exp.date}</span>
+          <h3>{exp.title}</h3>
+        </div>
+        <span className="br-toggle">▶</span>
+      </button>
+      {isExpanded && (
+        <>
+          <span className="org">{exp.org}</span>
+          <ul>
+            {exp.details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  );
+};
 
-const SkillWord = ({ skill }) => (
-  <div className="br-skillgroup">
-    <strong>{skill.category}</strong>
+const SkillWord = ({ skill, index }) => (
+  <div className="br-skillgroup" style={{ animationDelay: `${index * 60}ms` }}>
+    <strong className="br-skill-title">» {skill.category}</strong>
     <div className="br-skill-cloud">
       {skill.items.split(',').map((item, idx) => (
-        <div key={idx} className="br-word">{item.trim()}</div>
+        <div key={idx} className="br-word" style={{ animationDelay: `${idx * 30}ms` }}>
+          {item.trim()}
+        </div>
       ))}
     </div>
   </div>
@@ -103,7 +140,7 @@ export default function BrutalistLayout({ activeTheme, onThemeChange }) {
         <section className="br-exp" id="experience">
           <span className="br-marker">Experience</span>
           {DATA.experience.map((exp, idx) => (
-            <ExpCard key={idx} exp={exp} />
+            <ExpCard key={idx} exp={exp} index={idx} />
           ))}
         </section>
 
@@ -111,7 +148,7 @@ export default function BrutalistLayout({ activeTheme, onThemeChange }) {
         <section className="br-skills" id="skills">
           <span className="br-marker">Capabilities</span>
           {DATA.skills.map((skill, idx) => (
-            <SkillWord key={idx} skill={skill} />
+            <SkillWord key={idx} skill={skill} index={idx} />
           ))}
         </section>
       </div>

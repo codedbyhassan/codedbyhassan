@@ -1,3 +1,34 @@
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(46, 90, 172, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(46, 90, 172, 0);
+  }
+}
+
 .layout-clean {
   --bg: #FFFFFF;
   --surface: #F6F8FB;
@@ -113,6 +144,7 @@
   font-weight: 700;
   line-height: 1.08;
   margin-bottom: 20px;
+  animation: slideInLeft 0.8s ease-out;
 }
 
 .layout-clean .c-role {
@@ -154,12 +186,42 @@
   color: #fff;
   border: none;
   cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.layout-clean .c-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+  transition: left 0.5s ease;
+}
+
+.layout-clean .c-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(20, 33, 61, 0.2);
+}
+
+.layout-clean .c-btn:hover::before {
+  left: 100%;
 }
 
 .layout-clean .c-btn.ghost {
   background: transparent;
   color: var(--text);
   border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.layout-clean .c-btn.ghost:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(46, 90, 172, 0.05);
 }
 
 .layout-clean .c-hero-card {
@@ -230,6 +292,15 @@
   border: 1px solid var(--border);
   border-radius: 12px;
   padding: 18px 20px;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.layout-clean .c-stat:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 20px rgba(46, 90, 172, 0.12);
+  transform: translateY(-4px);
 }
 
 .layout-clean .c-stat .num {
@@ -237,6 +308,7 @@
   font-size: 26px;
   font-weight: 700;
   color: var(--accent);
+  font-variant-numeric: tabular-nums;
 }
 
 .layout-clean .c-stat .label {
@@ -244,6 +316,7 @@
   color: var(--muted);
   text-transform: uppercase;
   letter-spacing: 0.03em;
+  margin-top: 8px;
 }
 
 .layout-clean .c-project-grid {
@@ -259,17 +332,56 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  transition: box-shadow 200ms, transform 200ms;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.layout-clean .c-project::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+.layout-clean .c-project:hover::before {
+  left: 100%;
 }
 
 .layout-clean .c-project:hover {
-  box-shadow: 0 10px 26px rgba(20, 33, 61, 0.08);
-  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(46, 90, 172, 0.15);
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.layout-clean .c-project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.layout-clean .c-expand-icon {
+  font-size: 20px;
+  font-weight: 300;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.layout-clean .c-project:hover .c-expand-icon {
+  transform: scale(1.2) rotate(45deg);
 }
 
 .layout-clean .c-project h3 {
   font-size: 16.5px;
   font-weight: 700;
+  margin: 0;
 }
 
 .layout-clean .c-project p {
@@ -277,12 +389,24 @@
   color: var(--muted);
   line-height: 1.6;
   flex-grow: 1;
+  transition: max-height 0.3s ease, color 0.3s ease;
+  max-height: 2.4em;
+  overflow: hidden;
+}
+
+.layout-clean .c-project p.expanded {
+  max-height: 5em;
+  color: var(--text);
 }
 
 .layout-clean .c-stack {
   font-size: 11.5px;
   color: var(--accent2);
   font-weight: 600;
+  padding: 4px 8px;
+  background: rgba(27, 138, 107, 0.08);
+  border-radius: 4px;
+  display: inline-block;
 }
 
 .layout-clean .c-plinks {
@@ -290,12 +414,37 @@
   gap: 14px;
   font-size: 12.5px;
   font-weight: 600;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.layout-clean .c-plinks.show {
+  max-height: 40px;
+  opacity: 1;
 }
 
 .layout-clean .c-plinks a {
   color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 3px;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.layout-clean .c-plinks a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.layout-clean .c-plinks a:hover::after {
+  width: 100%;
 }
 
 .layout-clean .c-timeline {
@@ -316,19 +465,54 @@
 .layout-clean .c-titem {
   position: relative;
   padding-bottom: 34px;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+
+.layout-clean .c-titem-header {
+  width: 100%;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 12px 0;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.3s ease;
+}
+
+.layout-clean .c-titem-header:hover {
+  color: var(--accent);
+}
+
+.layout-clean .c-chevron {
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.layout-clean .c-titem.open .c-chevron {
+  transform: rotate(180deg);
 }
 
 .layout-clean .c-titem::before {
   content: '';
   position: absolute;
   left: -28px;
-  top: 4px;
+  top: 16px;
   width: 12px;
   height: 12px;
   border-radius: 50%;
   background: var(--accent);
   border: 3px solid var(--bg);
   box-shadow: 0 0 0 2px var(--accent);
+  transition: all 0.3s ease;
+}
+
+.layout-clean .c-titem.open::before {
+  box-shadow: 0 0 0 4px var(--accent);
 }
 
 .layout-clean .c-titem .date {
@@ -337,11 +521,13 @@
   color: var(--accent);
   text-transform: uppercase;
   margin-bottom: 4px;
+  display: block;
 }
 
 .layout-clean .c-titem h3 {
   font-size: 17px;
   font-weight: 700;
+  margin: 4px 0;
 }
 
 .layout-clean .c-titem .org {
@@ -351,19 +537,40 @@
   display: block;
 }
 
+.layout-clean .c-titem-details {
+  list-style: none;
+  padding: 16px 0 0 0;
+  margin: 0;
+  animation: slideInDown 0.3s ease;
+  border-top: 1px solid var(--border);
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
 .layout-clean .c-titem li {
   font-size: 13.5px;
   color: var(--muted);
   line-height: 1.65;
   padding-left: 14px;
   position: relative;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+  transition: color 0.3s ease;
 }
 
 .layout-clean .c-titem li::before {
-  content: '–';
+  content: '•';
   position: absolute;
   left: 0;
+  color: var(--accent2);
 }
 
 .layout-clean .c-skill-rows {

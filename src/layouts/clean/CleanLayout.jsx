@@ -1,32 +1,84 @@
+import React, { useState, useEffect } from 'react';
 import { DATA } from '../../data/portfolioData';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
 import './clean.css';
 
-const ProjectCard = ({ project }) => (
-  <div className="c-project">
-    <h3>{project.title}</h3>
-    <p>{project.desc}</p>
-    <span className="c-stack">{project.stack}</span>
-    <div className="c-plinks">
-      {project.source && <a href={project.source} target="_blank" rel="noopener noreferrer">Source →</a>}
-      {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">Live Demo →</a>}
-      {!project.source && !project.demo && <span style={{ color: 'var(--muted)' }}>Private repo</span>}
-    </div>
-  </div>
-);
+const AnimatedCounter = ({ target, duration = 2000 }) => {
+  const [count, setCount] = useState(0);
 
-const TimelineItem = ({ exp }) => (
-  <div className="c-titem">
-    <span className="date">{exp.date}</span>
-    <h3>{exp.title}</h3>
-    <span className="org">{exp.org}</span>
-    <ul>
-      {exp.details.map((detail, idx) => (
-        <li key={idx}>{detail}</li>
-      ))}
-    </ul>
-  </div>
-);
+  useEffect(() => {
+    let start = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
+
+    return () => clearInterval(timer);
+  }, [target, duration]);
+
+  return <span>{count}</span>;
+};
+
+const ProjectCard = ({ project, index }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div 
+      className="c-project"
+      style={{ animationDelay: `${index * 100}ms` }}
+      onMouseEnter={() => setIsExpanded(true)}
+      onMouseLeave={() => setIsExpanded(false)}
+    >
+      <div className="c-project-header">
+        <h3>{project.title}</h3>
+        <span className="c-expand-icon">+</span>
+      </div>
+      <p className={isExpanded ? 'expanded' : ''}>{project.desc}</p>
+      <span className="c-stack">{project.stack}</span>
+      <div className={`c-plinks ${isExpanded ? 'show' : ''}`}>
+        {project.source && <a href={project.source} target="_blank" rel="noopener noreferrer">Source →</a>}
+        {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">Live Demo →</a>}
+        {!project.source && !project.demo && <span style={{ color: 'var(--muted)' }}>Private repo</span>}
+      </div>
+    </div>
+  );
+};
+
+const TimelineItem = ({ exp, index }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <div 
+      className={`c-titem ${isOpen ? 'open' : ''}`}
+      style={{ animationDelay: `${index * 80}ms` }}
+    >
+      <button 
+        className="c-titem-header"
+        onClick={() => setIsOpen(!isOpen)}
+      >
+        <div>
+          <span className="date">{exp.date}</span>
+          <h3>{exp.title}</h3>
+          <span className="org">{exp.org}</span>
+        </div>
+        <span className="c-chevron">▼</span>
+      </button>
+      {isOpen && (
+        <ul className="c-titem-details">
+          {exp.details.map((detail, idx) => (
+            <li key={idx}>{detail}</li>
+          ))}
+        </ul>
+      )}
+    </div>
+  );
+};
 
 const SkillRow = ({ skill }) => (
   <div className="c-skill-row">
@@ -86,14 +138,14 @@ export default function CleanLayout({ activeTheme, onThemeChange }) {
         <section>
           <h2>About</h2>
           <div className="c-about-cols">
-            <div className="c-about-text">
+            <div className="c-about-text fade-in">
               <p>Based in {DATA.location}, I build full-stack systems that solve real problems for real organizations. From healthcare facilities to retail operations, I focus on offline-first, user-centered design.</p>
               <p>When I'm not coding, you'll find me thinking about infrastructure, security, and how technology can serve communities better.</p>
             </div>
             <div className="c-stats">
               {DATA.stats.map((stat, idx) => (
-                <div key={idx} className="c-stat">
-                  <div className="num">{stat.value}</div>
+                <div key={idx} className="c-stat" style={{ animationDelay: `${idx * 100}ms` }}>
+                  <div className="num"><AnimatedCounter target={parseInt(stat.value.replace(/\D/g, ''))} /></div>
                   <div className="label">{stat.label}</div>
                 </div>
               ))}
@@ -106,7 +158,7 @@ export default function CleanLayout({ activeTheme, onThemeChange }) {
           <h2>Featured Projects</h2>
           <div className="c-project-grid">
             {DATA.projects.map((project, idx) => (
-              <ProjectCard key={idx} project={project} />
+              <ProjectCard key={idx} project={project} index={idx} />
             ))}
           </div>
         </section>
@@ -116,7 +168,7 @@ export default function CleanLayout({ activeTheme, onThemeChange }) {
           <h2>Experience</h2>
           <div className="c-timeline">
             {DATA.experience.map((exp, idx) => (
-              <TimelineItem key={idx} exp={exp} />
+              <TimelineItem key={idx} exp={exp} index={idx} />
             ))}
           </div>
         </section>

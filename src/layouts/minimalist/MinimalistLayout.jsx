@@ -1,29 +1,73 @@
+import React, { useState } from 'react';
 import { DATA } from '../../data/portfolioData';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
 import './minimalist.css';
 
-const ProjectTableRow = ({ project, idx }) => (
-  <tr>
-    <td className="m-idx">{String(idx + 1).padStart(2, '0')}</td>
-    <td className="m-title">{project.title}</td>
-    <td className="m-stack">{project.stack.split(',')[0]}</td>
-    <td className="m-links">
-      {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">→</a>}
-    </td>
-  </tr>
-);
+const AnimatedCounter = ({ target, duration = 1500 }) => {
+  const [count, setCount] = React.useState(0);
 
-const ExpRow = ({ exp }) => (
-  <tr>
-    <td className="m-date">{exp.date}</td>
-    <td className="m-title">{exp.title}</td>
-    <td className="m-org">{exp.org}</td>
-  </tr>
-);
+  React.useEffect(() => {
+    let start = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      start += increment;
+      if (start >= target) {
+        setCount(target);
+        clearInterval(timer);
+      } else {
+        setCount(Math.floor(start));
+      }
+    }, 16);
 
-const SkillCat = ({ skill }) => (
-  <tr>
-    <td className="m-cat" colSpan="3">{skill.category}</td>
+    return () => clearInterval(timer);
+  }, [target, duration]);
+
+  return <span>{count}</span>;
+};
+
+const ProjectTableRow = ({ project, idx }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <tr 
+      className={`m-row ${isHovered ? 'active' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ animationDelay: `${idx * 50}ms` }}
+    >
+      <td className="m-idx">{String(idx + 1).padStart(2, '0')}</td>
+      <td className="m-title">{project.title}</td>
+      <td className="m-stack">{project.stack.split(',')[0]}</td>
+      <td className="m-links">
+        {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer" className="m-link">→</a>}
+      </td>
+    </tr>
+  );
+};
+
+const ExpRow = ({ exp, index }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <tr 
+      className={`m-row ${isHovered ? 'active' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ animationDelay: `${index * 50}ms` }}
+    >
+      <td className="m-date">{exp.date}</td>
+      <td className="m-title">{exp.title}</td>
+      <td className="m-org">{exp.org}</td>
+    </tr>
+  );
+};
+
+const SkillCat = ({ skill, index }) => (
+  <tr 
+    className="m-skill-row"
+    style={{ animationDelay: `${index * 50}ms` }}
+  >
+    <td className="m-cat" colSpan="3">» {skill.category}</td>
     <td className="m-items">{skill.items}</td>
   </tr>
 );
@@ -47,8 +91,10 @@ export default function MinimalistLayout({ activeTheme, onThemeChange }) {
         <section className="m-section">
           <div className="m-stats-row">
             {DATA.stats.map((stat, idx) => (
-              <div key={idx} className="m-stat">
-                <div className="m-stat-value">{stat.value}</div>
+              <div key={idx} className="m-stat" style={{ animationDelay: `${idx * 100}ms` }}>
+                <div className="m-stat-value">
+                  <AnimatedCounter target={parseInt(stat.value.replace(/\D/g, ''))} />
+                </div>
                 <div className="m-stat-label">{stat.label}</div>
               </div>
             ))}
@@ -73,7 +119,7 @@ export default function MinimalistLayout({ activeTheme, onThemeChange }) {
           <table className="m-table">
             <tbody>
               {DATA.experience.map((exp, idx) => (
-                <ExpRow key={idx} exp={exp} />
+                <ExpRow key={idx} exp={exp} index={idx} />
               ))}
             </tbody>
           </table>
@@ -85,7 +131,7 @@ export default function MinimalistLayout({ activeTheme, onThemeChange }) {
           <table className="m-table">
             <tbody>
               {DATA.skills.map((skill, idx) => (
-                <SkillCat key={idx} skill={skill} />
+                <SkillCat key={idx} skill={skill} index={idx} />
               ))}
             </tbody>
           </table>

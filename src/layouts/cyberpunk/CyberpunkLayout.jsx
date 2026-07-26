@@ -1,37 +1,68 @@
+import React, { useState } from 'react';
 import { DATA } from '../../data/portfolioData';
 import ThemeSwitcher from '../../components/ThemeSwitcher';
 import './cyberpunk.css';
 
-const ProjectRow = ({ project, idx }) => (
-  <tr>
-    <td className="name">{project.title}</td>
-    <td>{project.stack.split(',')[0]}</td>
-    <td>
-      {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer">Demo</a>}
-      {project.source && <a href={project.source} target="_blank" rel="noopener noreferrer">Source</a>}
-    </td>
-  </tr>
-);
+const ProjectRow = ({ project, idx }) => {
+  const [isHovered, setIsHovered] = useState(false);
+  return (
+    <tr 
+      className={`cy-row ${isHovered ? 'active' : ''}`}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ animationDelay: `${idx * 50}ms` }}
+    >
+      <td className="name">
+        <span className="cy-prefix">»</span>
+        {project.title}
+      </td>
+      <td>{project.stack.split(',')[0]}</td>
+      <td className="cy-links">
+        {project.demo && <a href={project.demo} target="_blank" rel="noopener noreferrer" className="cy-link">Demo ◆</a>}
+        {project.source && <a href={project.source} target="_blank" rel="noopener noreferrer" className="cy-link">Source ◆</a>}
+      </td>
+    </tr>
+  );
+};
 
-const LogEntry = ({ exp }) => (
-  <div className="cy-log">
-    <span className="ts">[{exp.date}]</span>
-    <h3>{exp.title}</h3>
-    <span className="org">{exp.org}</span>
-    <ul>
-      {exp.details.map((detail, idx) => (
-        <li key={idx}>{detail}</li>
-      ))}
-    </ul>
-  </div>
-);
+const LogEntry = ({ exp, index }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  return (
+    <div 
+      className={`cy-log ${isExpanded ? 'expanded' : ''}`}
+      style={{ animationDelay: `${index * 60}ms` }}
+    >
+      <button 
+        className="cy-log-header"
+        onClick={() => setIsExpanded(!isExpanded)}
+      >
+        <span className="ts">[{exp.date}]</span>
+        <h3>{exp.title} {isExpanded ? '▼' : '▶'}</h3>
+      </button>
+      {isExpanded && (
+        <>
+          <span className="org">&nbsp;&nbsp;{exp.org}</span>
+          <ul>
+            {exp.details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  );
+};
 
-const ChipGroup = ({ skill }) => (
-  <div className="cy-skillgroup">
-    <div className="lbl">{skill.category}</div>
+const ChipGroup = ({ skill, index }) => (
+  <div className="cy-skillgroup" style={{ animationDelay: `${index * 40}ms` }}>
+    <div className="lbl">≡ {skill.category}</div>
     <div className="cy-chip-row">
       {skill.items.split(',').map((item, idx) => (
-        <div key={idx} className="cy-chip">{item.trim()}</div>
+        <div key={idx} className="cy-chip" style={{ animationDelay: `${idx * 30}ms` }}>
+          <span className="cy-bracket">[</span>
+          {item.trim()}
+          <span className="cy-bracket">]</span>
+        </div>
       ))}
     </div>
   </div>
@@ -132,7 +163,7 @@ export default function CyberpunkLayout({ activeTheme, onThemeChange }) {
           <div className="cy-window-body">
             <p className="plain">Execution history:</p>
             {DATA.experience.map((exp, idx) => (
-              <LogEntry key={idx} exp={exp} />
+              <LogEntry key={idx} exp={exp} index={idx} />
             ))}
           </div>
         </div>
@@ -147,7 +178,7 @@ export default function CyberpunkLayout({ activeTheme, onThemeChange }) {
           </div>
           <div className="cy-window-body">
             {DATA.skills.map((skill, idx) => (
-              <ChipGroup key={idx} skill={skill} />
+              <ChipGroup key={idx} skill={skill} index={idx} />
             ))}
           </div>
         </div>
