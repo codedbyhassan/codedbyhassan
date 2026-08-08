@@ -30,6 +30,7 @@ Offline-first point of sale, inventory, and reporting system for small and mediu
 ### 🩺 [Hospital POS: Patricia Appiagyei Health Centre](https://github.com/codedbyhassan/Hospital-POS-for-Pahc)
 Point-of-sale and inventory system built and deployed for a real clinic. Handles Cash/NHIS billing, service and drug pricing, stock-aware carts with expiry checks, receipt history with PDF/Excel export, and backup/restore workflows. Cross-platform via web, Android (Capacitor), and desktop (Electron).
 **Stack:** React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui
+**Live demo:** [pharmacypos-steel.vercel.app](https://pharmacypos-steel.vercel.app/)
 
 ### 🚀 [Pampanaa: Lane Defense Command](https://github.com/codedbyhassan/pampanaa)
 A canvas-rendered arcade space shooter, built solo end to end: seven weapons across five damage elements, per-weapon amplifier progression, sixteen named bosses with phase loops, five campaign acts plus an endless mode, and a full front end (missions grid, leaderboard, achievements, in-game codex). Packaged for web and desktop.
