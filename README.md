@@ -1,68 +1,64 @@
 # Hassan Agyemang Boakye
 
-**Systems Administrator & Full-Stack Developer** — Kumasi, Ghana
+**IT Administrator & Full-Stack Developer** · Kumasi, Ghana
 
-Building production systems for real organizations — from healthcare facilities to community platforms — with React, Supabase, and Node.js. Currently Systems Administrator and Full-Stack Developer at Patricia Appiahgyei Health Center, and building toward launching an independent IT services and product firm in Kumasi.
+I build production software for real organizations: clinics, retailers, community groups, and I run the day-to-day IT for a growing aesthetic clinic and training academy. I'm also the founder of Officialluminalbs IT Consult. My tools of choice are React, Supabase, and Node.js, and I ship across web, Android, and desktop from a single codebase when I can.
 
-📧 poundsghst@gmail.com · 📍 Kumasi, Ashanti Region, Ghana
+📧 poundsghst@gmail.com · 📍 Kumasi, Ashanti Region, Ghana · 🌐 [hassanagyemang.vercel.app](https://hassanagyemang.vercel.app/)
 
 ---
 
 ## What I work with
 
-`React` `Vite` `TypeScript` `Tailwind CSS` `Supabase` `PostgreSQL` `Node.js` `Express` `Electron` `Capacitor` `Paystack` · `MTN MoMo` integration · Git/GitHub · Netlify · AWS/Azure fundamentals (growing)
+`React` `Vite` `TypeScript` `TanStack Start` `Tailwind CSS` `Supabase` `PostgreSQL` `Node.js` `Express` `Electron` `Capacitor` `IndexedDB` `Cloudflare Workers` `shadcn/ui` · `Paystack` · `MTN MoMo` integration · Git/GitHub · Netlify/Vercel · AWS/Azure fundamentals (growing)
 
-Beyond code: systems administration, IT infrastructure management, security auditing, technical documentation, stakeholder communication, and training delivery.
+Beyond code: IT infrastructure administration, systems and network support, security auditing, technical documentation, stakeholder communication, and training delivery.
 
 ---
 
 ## Featured projects
 
-### 🛒 [Retailer POS](https://github.com/codedbyhassan/Retailer-POS)
-Offline-first point of sale, inventory, and reporting system for small and medium retailers. Keeps selling even when the internet drops — local-first with IndexedDB, syncing to an Express/Supabase backend when available. Full security audit completed and being hardened for production.
+### 🛍️ [Vendoo](https://github.com/codedbyhassan/vendoo)
+A production-grade fashion e-commerce storefront built for Accra, with a full catalog, cart, coupon engine, Ghana-first checkout (Card, MTN MoMo, Vodafone Cash, AirtelTigo Money), order tracking, and an admin console. Prices render natively in Ghana Cedis, with a complete dark mode.
+**Stack:** TanStack Start, React 19, TypeScript, Tailwind CSS v4, Framer Motion, Cloudflare Workers (SSR)
 
+### 🛒 [Retailer POS](https://github.com/codedbyhassan/Retailer-POS)
+Offline-first point of sale, inventory, and reporting system for small and medium retailers. Sells through internet outages with a local-first IndexedDB data layer, syncing to an Express/Supabase backend when a connection is available, plus a full analytics/reporting hub and five swappable visual presets.
 **Stack:** React 19, Vite, Tailwind CSS, IndexedDB, Node.js/Express, Supabase
 **Live demo:** [v0-retailer.vercel.app](https://v0-retailer.vercel.app)
 
-### 🏫 Lumina School Management
-Local-first school management platform for Ghanaian schools with on-demand cloud sync, conflict detection, and server-enforced license management. Built for patchy connectivity — works fully offline, syncs on demand.
-
-**Stack:** React, Dexie (IndexedDB), Supabase, PostgreSQL, Edge Functions
-
-### 🩺 [Hospital POS — Patricia Appiahgyei Health Center](https://github.com/codedbyhassan/Hospital-POS-for-Pahc)
-Point-of-sale and inventory system built and deployed for a real clinic — handles Cash/NHIS billing, service and drug pricing, receipt history, and backup/restore workflows. Cross-platform via web, Android (Capacitor), and desktop (Electron).
-
+### 🩺 [Hospital POS: Patricia Appiagyei Health Centre](https://github.com/codedbyhassan/Hospital-POS-for-Pahc)
+Point-of-sale and inventory system built and deployed for a real clinic. Handles Cash/NHIS billing, service and drug pricing, stock-aware carts with expiry checks, receipt history with PDF/Excel export, and backup/restore workflows. Cross-platform via web, Android (Capacitor), and desktop (Electron).
 **Stack:** React 18, TypeScript, Vite, Tailwind CSS, shadcn/ui
 
-### 🛍️ [Ecommerce Platform](https://github.com/codedbyhassan/e-commerce-app)
-Portfolio-quality storefront with a Nike/Aimé Leon Dore–grade editorial design, full admin dashboard, and Paystack/MTN MoMo checkout.
-
-**Stack:** React 19, Vite, Tailwind CSS v4, Supabase, Drizzle ORM
-**Live demo:** [e-commerce-app-neon-seven.vercel.app](https://e-commerce-app-neon-seven.vercel.app)
-
-### 🕌 [MKAASH Database](https://github.com/codedbyhassan/mkaashdatabase)
-Membership and organizational management platform built for Majlis Khuddam-ul-Ahmadiyya, Ashanti Region — unified system for managing members and tracking organizational activity.
-
-**Stack:** React, TypeScript, Supabase
-**Live demo:** [v0-mkaash.vercel.app](https://v0-mkaash.vercel.app)
+### 🚀 [Pampanaa: Lane Defense Command](https://github.com/codedbyhassan/pampanaa)
+A canvas-rendered arcade space shooter, built solo end to end: seven weapons across five damage elements, per-weapon amplifier progression, sixteen named bosses with phase loops, five campaign acts plus an endless mode, and a full front end (missions grid, leaderboard, achievements, in-game codex). Packaged for web and desktop.
+**Stack:** React 18, Vite, Canvas 2D (custom engine, quadtree collision, particle system), Web Audio, IndexedDB, Electron
+**Live demo:** [pampanaa.vercel.app](https://pampanaa.vercel.app)
 
 ---
 
 ## Experience
 
-**Systems Administrator** — Patricia Appiahgyei Health Center · *Jan 2026–Present*
-Manage the facility's day-to-day digital infrastructure. Designed and built a live, cross-platform facility management system covering patient records, billing, inventory, and analytics — deployed on Netlify with desktop and mobile packaging.
+**Founder** · Officialluminalbs IT Consult · *Current*
+Founded and run an independent IT services and product consultancy based in Kumasi, delivering systems administration, custom software, and IT infrastructure support to organizations across the region.
 
-**IT and Administrative Support Officer** — Asokwa Municipal Health Directorate · *Oct 2024–Sept 2025*
+**IT Admin Manager** · [PrettyIris Skin Clinic](https://prettyiris.com/) · Kumasi · *Current*
+Manage IT infrastructure and systems administration for a medical aesthetic clinic and VTCT-accredited training academy, supporting clinic operations, student/practitioner systems, and day-to-day technical needs across the flagship site in Asokwa, Kumasi.
+
+**Systems Administrator** · Patricia Appiagyei Health Centre · *Jan 2026 – 2026*
+Managed the facility's day-to-day digital infrastructure. Designed and built a live, cross-platform facility management system (PAHC POS) covering patient billing, drug/service inventory, receipts, and backups, deployed across web, Android, and desktop.
+
+**IT and Administrative Support Officer** · Asokwa Municipal Health Directorate · *Oct 2024 – Sept 2025*
 National Service. Provided IT and administrative support across the directorate; supported digital record keeping and helped staff navigate systems and processes.
 
 ---
 
 ## Education
 
-- **Kwame Nkrumah University of Science and Technology (KNUST)** — B.Ed, Information Technology major
-- **NIIT Open Lab** — Diploma in Software Engineering (completed June 2026)
+- **Kwame Nkrumah University of Science and Technology (KNUST)**: B.Ed, Information Technology major
+- **NIIT Open Lab**: Diploma in Software Engineering (completed June 2026)
 
 ---
 
-📫 Reach out at **poundsghst@gmail.com** or open an issue on any of my repos.
+📫 Reach out at **poundsghst@gmail.com**, visit **[hassanagyemang.vercel.app](https://hassanagyemang.vercel.app/)**, or open an issue on any of my repos.
