@@ -22,7 +22,7 @@ Offline-first POS, inventory, and reporting system for small and medium retailer
 
 ### 🛍️ [Vendoo](https://github.com/codedbyhassan/vendoo)
 A production-grade fashion e-commerce storefront built for Accra: full catalog, cart, coupon engine, Ghana-first checkout (Card, MTN MoMo, Vodafone Cash, AirtelTigo Money), order tracking, an admin console, native GH₵ pricing, and a complete dark mode.
-**Stack:** TanStack Start · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Cloudflare Workers (SSR)
+**Stack:** TanStack Start · React 19 · TypeScript · Tailwind CSS v4 · Framer Motion · Cloudflare Workers (SSR)**Live:**[vendoo.vercel.app](https://vendoo.vercel.app)
 
 ### 🚀 [Pampanaa: Lane Defense Command](https://github.com/codedbyhassan/pampanaa)
 A canvas-rendered arcade space shooter, built solo end to end: seven weapons across five damage elements, per-weapon amplifier progression, sixteen named bosses with phase loops, five campaign acts plus an endless mode, and a full front end (missions, leaderboard, achievements, in-game codex).
