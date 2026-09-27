@@ -45,7 +45,7 @@ A canvas-rendered arcade space shooter, built solo end to end: seven weapons acr
 
 ## 💼 Experience
 
-**Founder** · Officialluminalbs IT Consult · *Current*
+**Co-Founder** · Ascend Technologies · *Current*
 Independent IT services and product consultancy based in Kumasi — systems administration, custom software, and IT infrastructure support for organizations across the region.
 
 **IT Admin Manager** · [PrettyIris Skin Clinic](https://prettyiris.com/) · Kumasi · *Jul2026 - Current*
